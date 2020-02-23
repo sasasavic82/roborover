@@ -80,7 +80,7 @@ exit
 EOT
 
 # copy
-scp ./build/roborover.zip pi@dex.local:rovertemp/
+sshpass -p $RASPBERRYPI_PASSWD scp ./build/roborover.zip pi@dex.local:rovertemp/
 
 sshpass -p $RASPBERRYPI_PASSWD ssh -tt pi@dex.local -q << EOT
 cd rovertemp
