@@ -5,9 +5,16 @@ const ImageModel = require('./models/image.model');
 const atob = require('atob');
 const recognition = new AWS.Rekognition();
 
+/**
+ * Rocgnizer Class
+ */
 class Recognizer {
   constructor() { }
 
+  /**
+   * Convert image to binary
+   * @param {string} encodedFile 
+   */
   _getBinary(encodedFile) {
 
     var binaryImg = atob(encodedFile);
@@ -21,6 +28,10 @@ class Recognizer {
     return ab;
   }
 
+  /**
+   * Resolve image labels via Rekognition Service
+   * @param {string} encodedImage 
+   */
   resolveLabels(encodedImage) {
     let imageBytes = this._getBinary(encodedImage);
 
@@ -43,6 +54,11 @@ class Recognizer {
     });
   }
 
+  /**
+   * Save resolved labels and encoded image to DynamoDb
+   * @param {any} encodedImage 
+   * @param {any} labels 
+   */
   saveLabels(encodedImage, labels) {
 
     const image = new ImageModel({

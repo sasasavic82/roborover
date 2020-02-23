@@ -1,10 +1,10 @@
-service: acg-basestation
+service: roborover-basestation
 
 plugins:
   - serverless-s3-sync
 
 custom:
-  baseName: acg-basestation.com
+  baseName: roborover-basestation.com
   s3Sync:
     - bucketName: ${self:custom.baseName}
       localDir: static

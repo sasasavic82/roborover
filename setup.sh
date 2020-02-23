@@ -2,8 +2,10 @@
 # stop script on error
 set -e
 
-REGION=${1:-us-east-1}
-ENV=${2:-dev}
+ENV=${1:-dev}
+REGION=${2:-us-east-1}
+RASPBERRYPI_PASSWD=${3:-raspberrypi}
+
 export AWS_DEFAULT_REGION=$REGION
 
 # Setup build directory
@@ -29,7 +31,7 @@ if [ ! -f ./roveros/certs/cert.pem ]; then
 
     printf "\nAttaching Policy default-roborover-policy to ${CERTIFICATE_ARN} ARN...\n"
 
-    aws iot attach-policy --policy-name default-roborover-policy-prod --target ${CERTIFICATE_ARN}
+    aws iot attach-policy --policy-name "default-roborover-policy-${ENV}" --target ${CERTIFICATE_ARN}
 
 fi
 
@@ -47,7 +49,7 @@ printf "\nFound AWS IoT Endpoint: ${ENDPOINT}...\n"
 
 # https://q0lh864dc2.execute-api.${REGION}.amazonaws.com/dev/api/recognize
 
-RECOGNITION_API_MODEL=$(aws apigateway get-rest-apis --query 'items[?contains(name, `acg-roborover`) == `true`].id' --output text)
+RECOGNITION_API_MODEL=$(aws apigateway get-rest-apis --query 'items[?contains(name, `roborover-infrastructure`) == `true`].id' --output text)
 
 # Check to see if anything was returned
 if [ $? -ne 0 ]
@@ -70,7 +72,7 @@ echo "{
 # Zip it
 zip -r ./build/roborover.zip ./roveros -x ./roveros/node_modules/**\* ./roveros/*.git*
 
-ssh -tt pi@dex.local << EOT
+sshpass -p $RASPBERRYPI_PASSWD ssh -tt pi@dex.local -q << EOT
 rm -rf rovertemp
 rm -rf roveros
 mkdir rovertemp
@@ -80,7 +82,7 @@ EOT
 # copy
 scp ./build/roborover.zip pi@dex.local:rovertemp/
 
-ssh -tt pi@dex.local << EOT
+sshpass -p $RASPBERRYPI_PASSWD ssh -tt pi@dex.local -q << EOT
 cd rovertemp
 unzip roborover.zip
 mv roveros /home/pi
@@ -88,7 +90,5 @@ cd /home/pi/roveros
 npm install
 exit
 EOT
-
-# expect -c 'spawn ssh user@server "ls -lh file"; expect "assword:"; send "mypassword\r"; interact'
 
 # pip install picamera

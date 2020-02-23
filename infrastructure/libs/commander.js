@@ -2,13 +2,20 @@ let { Iot, IotData } = require('aws-sdk');
 let _ = require('lodash');
 let { v4 } = require('uuid');
 let { capitalizeFirstLetter } = require('./helper');
-// Priority
+
+
+/**
+ * Message Priority
+ */
 const Priority = {
     LOW: 'low',
     MEDIUM: 'medium',
     HIGH: 'high'
 };
 
+/**
+ * Command Type
+ */
 const CommandType = {
     FORWARD: 'forward',
     BACKWARD: 'backward',
@@ -30,9 +37,11 @@ const CommandType = {
 const VERSION = '1.0';
 const QOS = 0;
 
-
+/**
+ * Commander Class
+ */
 class Commander {
-    constructor({ region = 'ap-southeast-2', topicPrefix = 'roborover/control' }) {
+    constructor({ region = 'us-east-1', topicPrefix = 'roborover/control' }) {
 
         this.region = region;
         this.topicPrefix = topicPrefix;
@@ -96,7 +105,7 @@ class Commander {
         const isInitialized = this.endpoint !== undefined;
 
         if(withError && !isInitialized)
-            throw 'Commander not initialized';
+            throw 'Commander still initializing ...';
 
         return isInitialized;
     }

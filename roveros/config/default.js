@@ -4,7 +4,7 @@ module.exports = {
         'recognition': require('./bootstrap.json').recognition_endpoint
     },
     'iot': {
-        'endpoint': require('./bootstrap.json').endpoint, //process.env.AWS_IOT_ENDPOINT || 'a1o1xryvmqvun7.iot.ap-southeast-2.amazonaws.com',
+        'endpoint': require('./bootstrap.json').endpoint,
         'clientId': process.env.CLIENT_ID || 'roborover_abc123',
         'topic': {
             'telemetry': 'roborover/telemetry/event',
@@ -14,7 +14,7 @@ module.exports = {
     'deviceSerial': process.env.SERIAL_NO,
     'sensors': {
         'enabled': true,
-        'pollingInterval': 120000, // 5 sec polling interval
+        'pollingInterval': 30000, // 30 sec polling interval
     },
     'log': 'debug'
 }
