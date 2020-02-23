@@ -58,7 +58,8 @@ then
     exit 255
 fi
 
-RECOGNITION_ENDPOINT="https://${RECOGNITION_API_MODEL}.execute-api.${REGION}.amazonaws.com/${ENV}/api/recognize"
+ROBOROVER_RECOGNITION_ENDPOINT="https://${RECOGNITION_API_MODEL}.execute-api.${REGION}.amazonaws.com/${ENV}/api/recognize"
+ROBOROVER_CONTROL_ENDPOINT="https://${RECOGNITION_API_MODEL}.execute-api.${REGION}.amazonaws.com/${ENV}/api/control"
 
 printf "\nAWS API Gateway Endpoint for Image Recognition: ${RECOGNITION_ENDPOINT}...\n"
 
@@ -66,7 +67,7 @@ touch ./roveros/config/bootstrap.json
 
 echo "{
   \"endpoint\": \"${ENDPOINT}\",
-  \"recognition_endpoint\": \"${RECOGNITION_ENDPOINT}\"
+  \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\"
 }" > ./roveros/config/bootstrap.json
 
 # Zip it
@@ -90,5 +91,8 @@ cd /home/pi/roveros
 npm install
 exit
 EOT
+
+export ROBOROVER_CONTROL_ENDPOINT
+export ROBOROVER_RECOGNITION_ENDPOINT
 
 # pip install picamera

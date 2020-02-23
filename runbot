@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [ -z "$ROBOROVER_CONTROL_ENDPOINT" ]; then
+    echo "RoboRover control API env variable ROBOROVER_CONTROL_API not set."
+    exit 255
+fi
+
+function run_api() {
+    
+    local command=${1}
+    local val=${2}
+
+    local data="{ \"type\": \"${command}\", \"attributes\": { \"rotation\": ${val} } }"
+
+    response=$(curl --header "Content-Type: application/json" --request POST --data "${data}" $ROBOROVER_CONTROL_ENDPOINT --silent)
+
+    echo $response
+
+    if [ $? -ne 0 ]; then
+        printf "\nUnable to connect to RoboRover control API\n"
+        exit 255
+    fi    
+}
+
+if [ -z "$1" ]; then 
+    echo "RoboRover command required."
+    echo "available commands: pan, tilt, forward, stop, left, right, drive_cm, drive_degrees, set_speed, image"
+    exit 255
+fi
+
+if [ -z "$2" ]; then 
+    echo "RoboRover command [$1] requires value"
+    exit 255
+fi
+
+run_api $1 $2
