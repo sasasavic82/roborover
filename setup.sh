@@ -4,7 +4,7 @@ set -e
 
 ENV=${1:-dev}
 REGION=${2:-us-east-1}
-RASPBERRYPI_PASSWD=${3:-raspberrypi}
+RASPBERRYPI_PASSWD=${3:-robots1234}
 
 export AWS_DEFAULT_REGION=$REGION
 
