@@ -1,5 +1,6 @@
 image-upload-recognition:
   handler: services/recognition/upload.handler
+  iamRoleStatementsName: roborover-image-upload-recognition-${self:provider.stage}
   iamRoleStatements:
     - Effect: 'Allow'
       Action:

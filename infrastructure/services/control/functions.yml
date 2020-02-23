@@ -1,5 +1,6 @@
 control-post:
   handler: services/control/post.handler
+  iamRoleStatementsName: roborover-control-post-${self:provider.stage}
   iamRoleStatements:
     - Effect: 'Allow'     
       Action:

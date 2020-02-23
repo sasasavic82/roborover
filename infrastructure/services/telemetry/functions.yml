@@ -1,5 +1,6 @@
 telemetry-incoming:
   handler: services/telemetry/incoming.handler
+  iamRoleStatementsName: roborover-telemetry-incoming-${self:provider.stage}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -14,6 +15,7 @@ telemetry-incoming:
 
 telemetry-get:
   handler: services/telemetry/get.handler
+  iamRoleStatementsName: roborover-telemetry-get-${self:provider.stage}
   iamRoleStatements:
     - Effect: Allow
       Action:
