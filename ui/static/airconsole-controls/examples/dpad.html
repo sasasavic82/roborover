@@ -1,0 +1,228 @@
+<!--
+
+
+
+
+   INSTEAD OF EDITING THIS HTML FILE, USE OUR CONTROLLER GENERATOR:
+   http://developers.airconsole.com/tools/airconsole-controls/ctrl-generator/controller.html
+
+
+
+
+!-->
+<html>
+<head>
+  <script type="text/javascript" src="../dpad/dpad.js"></script>
+  <script type="text/javascript" src="fake-airconsole.js"></script>
+  <link rel="stylesheet" href="../dpad/dpad.css">
+  <style type="text/css">
+    body {
+      -ms-user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .example-container {
+      position: relative;
+      background-color: #3b3b3b;
+      text-align: center;
+      font-family: sans-serif;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      max-width: 1000px;
+      max-height: 360px;
+    }
+
+    /* You need to explicitly position your dpads */
+    #dpad-0 {
+      position: absolute;
+      width: 20%;
+      height: 100%;
+      top: 0px;
+      left: 3%;
+    }
+
+    #dpad-1 {
+      position: absolute;
+      width: 20%;
+      height: 100%;
+      top: 0px;
+      left: 25%;
+    }
+
+    #dpad-2 {
+      position: absolute;
+      width: 20%;
+      height: 100%;
+      top: 0px;
+      left: 55%;
+    }
+
+    #dpad-3 {
+      position: absolute;
+      width: 20%;
+      height: 100%;
+      top: 0px;
+      left: 78%;
+    }
+  </style>
+</head>
+<body>
+<div class="example-container">
+  <div id="dpad-0">
+    <div>
+      <div class="dpad-instructions">SWIPE<br>(Diagonal: off)</div>
+      <div class="dpad-arrow dpad-arrow-up"></div>
+      <div class="dpad-arrow dpad-arrow-down"></div>
+      <div class="dpad-arrow dpad-arrow-left"></div>
+      <div class="dpad-arrow dpad-arrow-right"></div>
+    </div>
+  </div>
+  <div id="dpad-1">
+    <div>
+      <div class="dpad-instructions">SWIPE<br>(Diagonal: on)</div>
+      <div class="dpad-arrow dpad-arrow-up"></div>
+      <div class="dpad-arrow dpad-arrow-down"></div>
+      <div class="dpad-arrow dpad-arrow-left"></div>
+      <div class="dpad-arrow dpad-arrow-right"></div>
+    </div>
+  </div>
+  <div id="dpad-2">
+    <div>
+      <div class="dpad-arrow dpad-arrow-up"></div>
+      <div class="dpad-arrow dpad-arrow-down"></div>
+      <div class="dpad-arrow dpad-arrow-left"></div>
+      <div class="dpad-arrow dpad-arrow-right"></div>
+    </div>
+  </div>
+  <div id="dpad-3">
+    <div>
+      <div class="dpad-arrow dpad-arrow-up"></div>
+      <div class="dpad-arrow dpad-arrow-down"></div>
+      <div class="dpad-arrow dpad-arrow-left"></div>
+      <div class="dpad-arrow dpad-arrow-right"></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var airconsole = new AirConsole();
+
+  var dpad0 = new DPad("dpad-0", {
+    relative: true,
+    distance: { x: 10, y: 10},
+    "directionchange": function(key, pressed) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad0": {
+          "directionchange": {
+            "key": key,
+            "pressed": pressed
+          }
+        }
+      });
+    },
+    "touchstart": function() {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad0": {
+          "touch": true
+        }
+      });
+    },
+    "touchend": function(had_direction) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad0": {
+          "touch": false,
+          "had_direction": had_direction
+        }
+      });
+    }
+  });
+  var dpad1 = new DPad("dpad-1", {
+    relative: true,
+    distance: { x: 10, y: 10},
+    "directionchange": function(key, pressed) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad1": {
+          "directionchange": {
+            "key": key,
+            "pressed": pressed
+          }
+        }
+      });
+    },
+    "touchstart": function() {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad1": {
+          "touch": true
+        }
+      });
+    },
+    "touchend": function(had_direction) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad1": {
+          "touch": false,
+          "had_direction": had_direction
+        }
+      });
+    },
+    "diagonal": true
+  });
+  var dpad2 = new DPad("dpad-2", {
+    "directionchange": function(key, pressed) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad2": {
+          "directionchange": {
+            "key": key,
+            "pressed": pressed
+          }
+        }
+      });
+    },
+    "touchstart": function() {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad2": {
+          "touch": true
+        }
+      });
+    },
+    "touchend": function(had_direction) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad2": {
+          "touch": false,
+          "had_direction": had_direction
+        }
+      });
+    }
+  });
+  var dpad3 = new DPad("dpad-3", {
+    diagonal: true,
+    "directionchange": function(key, pressed) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad3": {
+          "directionchange": {
+            "key": key,
+            "pressed": pressed
+          }
+        }
+      });
+    },
+    "touchstart": function() {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad3": {
+          "touch": true
+        }
+      });
+    },
+    "touchend": function(had_direction) {
+      airconsole.message(AirConsole.SCREEN, {
+        "dpad3": {
+          "touch": false,
+          "had_direction": had_direction
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

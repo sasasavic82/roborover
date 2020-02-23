@@ -1,0 +1,29 @@
+{
+  "name": "acg-roborover-course",
+  "version": "1.0.0",
+  "description": "A Cloud Guru RoboRover Lectures",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACloudGuru-Resources/Course_Robotics_IoT_and_ML.git"
+  },
+  "author": "Sasa Savic <sasa@imbue.app>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ACloudGuru-Resources/Course_Robotics_IoT_and_ML/issues"
+  },
+  "homepage": "https://github.com/ACloudGuru-Resources/Course_Robotics_IoT_and_ML#readme",
+  "dependencies": {
+    "aws-sdk": "^2.471.0",
+    "dynamoose": "^1.7.3",
+    "lodash": "^4.17.11",
+    "serverless-iam-roles-per-function": "^2.0.1",
+    "serverless-offline": "^5.0.1",
+    "serverless-pseudo-parameters": "^2.4.0",
+    "uuid": "^3.3.2",
+    "atob": "^2.1.2"
+  }
+}

@@ -1,0 +1,30 @@
+.joystick {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  height: 90%;
+  border-radius: 100%;
+  background-color: black;
+  background: url(joystick-bg.png) no-repeat center center;
+  background-size: contain;
+}
+
+.joystick-relative {
+  width: 100%;
+  height: 100%;
+}
+
+.joystick-relative-stick {
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: 0;
+  padding-bottom: 50%;
+  margin-left: -25%;
+  margin-top: -25%;
+  border-radius: 100%;
+  background-color: #000000;
+  border: 3px solid #ADDE00;
+}

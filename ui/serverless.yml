@@ -1,0 +1,49 @@
+service: acg-basestation
+
+plugins:
+  - serverless-s3-sync
+
+custom:
+  baseName: acg-basestation.com
+  s3Sync:
+    - bucketName: ${self:custom.baseName}
+      localDir: static
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+resources:
+  Resources:
+    BasestationSite:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: PublicRead
+        BucketName: ${self:custom.baseName}
+        WebsiteConfiguration:
+          IndexDocument: index.html
+
+    StaticSiteS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: BasestationSite
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+                - s3:GetObject
+              Resource:
+                Fn::Join: [
+                  "", [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "BasestationSite"
+                    },
+                    "/*"
+                  ]
+                ]

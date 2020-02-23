@@ -1,0 +1,221 @@
+<!--
+
+
+
+
+   INSTEAD OF EDITING THIS HTML FILE, USE OUR CONTROLLER GENERATOR:
+   http://developers.airconsole.com/tools/airconsole-controls/ctrl-generator/controller.html
+
+
+
+
+!-->
+<html>
+  <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <script type="text/javascript" src="../dpad/dpad.js"></script>
+    <link rel="stylesheet" href="../dpad/dpad.css">
+    <script type="text/javascript" src="../button/button.js"></script>
+    <link rel="stylesheet" href="../button/button.css">
+    <script type="text/javascript" src="fake-airconsole.js"></script>
+    <style type="text/css">
+      body {
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+
+      .example-container {
+        position: relative;
+        background-color: #3b3b3b;
+        text-align: center;
+        font-family: sans-serif;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        max-width: 720px;
+        max-height: 360px;
+      }
+
+      #dpad {
+        position: absolute;
+        width: 40%;
+        height: 100%;
+        left: 0%;
+        top: 0%;
+      }
+
+      .button-300-150 {
+        position: absolute;
+        height: 50%;
+        width: 40%;
+        right: 0px;
+
+      }
+
+      .button-80 {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        left: 50%;
+        margin-left: -25%;
+        font-size: 10px;
+      }
+
+      .button-80 .button-text {
+        margin-top: -0.6em;
+      }
+
+      #a {
+        bottom: 0%;
+        background-position: 50% 0%;
+      }
+
+      .button-a-text {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        padding-bottom: 50%;
+        height: 0%;
+      }
+
+      #b {
+        top: 0%;
+        background-position: 50% 100%;
+      }
+
+      .button-b-text {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        padding-bottom: 50%;
+        height: 0%;
+      }
+
+      .middle-group {
+        position: absolute;
+        height: 50%;
+        width: 20%;
+        left: 40%;
+        top: 50%;
+      }
+
+      .middle-group-square {
+        position: absolute;
+        height: 0%;
+        width: 100%;
+        padding-bottom: 100%;
+        left: 0px;
+        top: 0px;
+      }
+
+      #start {
+        bottom: 110%;
+      }
+
+      #select {
+        bottom: 55%;
+      }
+
+      #reset {
+        bottom: 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="example-container">
+      <div class="middle-group">
+        <div class="middle-group-square">
+          <div id="start" class="button-80"><div class="button-text">START</div></div>
+          <div id="select" class="button-80"><div class="button-text">SELECT</div></div>
+          <div id="reset" class="button-80"><div class="button-text">RESET</div></div>
+        </div>
+      </div>
+      <div id="dpad" class="dpad">
+        <div class="dpad-relative">
+          <div class="dpad-instructions">SWIPE</div>
+          <div class="dpad-arrow dpad-arrow-up"></div>
+          <div class="dpad-arrow dpad-arrow-down"></div>
+          <div class="dpad-arrow dpad-arrow-left"></div>
+          <div class="dpad-arrow dpad-arrow-right"></div>
+        </div>
+      </div>
+      <div id="a" class="button-300-150"><div class="button-a-text"><div class="button-text">A</div></div></div>
+      <div id="b" class="button-300-150"><div class="button-b-text"><div class="button-text">B</div></div></div>
+    </div>
+    <script type="text/javascript">
+      var airconsole = new AirConsole();
+      new DPad("dpad", {
+        "directionchange": function(key, pressed) {
+        airconsole.message(AirConsole.SCREEN, {
+          "dpad": {
+            "directionchange": {
+              "key": key,
+              "pressed": pressed
+            }
+          }
+        });
+      },
+        "touchstart": function() {
+          airconsole.message(AirConsole.SCREEN, {
+            "dpad": {
+              "touch": true
+            }
+          });
+        },
+        "touchend": function(had_direction) {
+          airconsole.message(AirConsole.SCREEN, {
+            "dpad": {
+              "touch": false,
+              "had_direction": had_direction
+            }
+          });
+        }
+      });
+      new Button("start", {
+        "down": function () {
+          airconsole.message(AirConsole.SCREEN, {"start": "down"});
+        },
+        "up": function () {
+          airconsole.message(AirConsole.SCREEN, {"start": "up"});
+        }
+      });
+      new Button("select", {
+        "down": function () {
+          airconsole.message(AirConsole.SCREEN, {"select": "down"});
+        },
+        "up": function () {
+          airconsole.message(AirConsole.SCREEN, {"select": "up"});
+        }
+      });
+      new Button("reset", {
+        "down": function () {
+          airconsole.message(AirConsole.SCREEN, {"reset": "down"});
+        },
+        "up": function () {
+          airconsole.message(AirConsole.SCREEN, {"reset": "up"});
+        }
+      });
+      new Button("a", {
+        "down": function () {
+          airconsole.message(AirConsole.SCREEN, {"a": "down"});
+        },
+        "up": function () {
+          airconsole.message(AirConsole.SCREEN, {"a": "up"});
+        }
+      });
+      new Button("b", {
+        "down": function () {
+          airconsole.message(AirConsole.SCREEN, {"b": "down"});
+        },
+        "up": function () {
+          airconsole.message(AirConsole.SCREEN, {"b": "up"});
+        }
+      });
+    </script>
+  </body>
+</html>

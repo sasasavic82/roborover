@@ -1,0 +1,14 @@
+Resources:
+  ImageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: images-${self:provider.stage}
+      AttributeDefinitions:
+        - AttributeName: roboRoverId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: roboRoverId
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5

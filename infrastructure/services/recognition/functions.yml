@@ -1,0 +1,24 @@
+image-upload-recognition:
+  handler: services/recognition/upload.handler
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - rekognition:*
+      Resource: '*'
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource:
+        - 'Fn::GetAtt': [ImageTable, Arn]
+  events:
+#    - s3:
+#        bucket: rover-images-${self:provider.stage}
+#        event: s3:ObjectCreated:*
+#        rules:
+#          - prefix: uploads/
+#          - suffix: .jpg
+    - http:
+        path: api/recognize
+        method: post
+        cors: true

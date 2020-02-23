@@ -1,0 +1,26 @@
+h1 {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .center {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text {
+    margin-top: 30px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .basic_button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18;
+    margin-top: 30px;
+    width: 300px;
+    height: 45px;
+    border-radius: 4px;
+    background-color: #44AAB5
+  }

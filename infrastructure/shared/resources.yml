@@ -1,0 +1,16 @@
+Resources:
+  DefaultIotPolicy:
+    Type: AWS::IoT::Policy
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: Allow
+            Action: 
+              - iot:Connect
+              - iot:Receive
+              - iot:Subscribe
+              - iot:Publish
+            Resource: "*"       
+      PolicyName: default-roborover-policy-${self:provider.stage}

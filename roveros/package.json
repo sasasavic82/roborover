@@ -1,0 +1,27 @@
+{
+  "name": "roveros",
+  "version": "1.0.0",
+  "description": "RoboRover Operating System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACloudGuru-Resources/Course_Robotics_IoT_and_ML.git"
+  },
+  "author": "Sasa Savic <sasa@imbue.app>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ACloudGuru-Resources/Course_Robotics_IoT_and_ML/issues"
+  },
+  "homepage": "https://github.com/ACloudGuru-Resources/Course_Robotics_IoT_and_ML#readme",
+  "dependencies": {
+    "aws-iot-device-sdk": "^2.2.1",
+    "lodash": "^4.17.11",
+    "commander": "^2.20.0",
+    "pi-camera": "^1.2.1",
+    "node-gopigo3": "^0.0.3",
+    "request": "^2.88.0"
+  }
+}

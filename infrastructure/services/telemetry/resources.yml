@@ -1,0 +1,30 @@
+Resources:
+  TelemetryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: telemetry-${self:provider.stage}
+      AttributeDefinitions:
+        - AttributeName: telemetryId
+          AttributeType: S
+#        - AttributeName: missionId
+#          AttributeType: S
+#        - AttributeName: timestamp
+#          AttributeType: N
+      KeySchema:
+        - AttributeName: telemetryId
+          KeyType: HASH
+#        - AttributeName: timestamp
+#          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+#      GlobalSecondaryIndexes:
+#      - IndexName: MissionIndex
+#        KeySchema:
+#        - AttributeName: missionId
+#          KeyType: HASH
+#        Projection:
+#          ProjectionType: ALL
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 5
+#          WriteCapacityUnits: 5

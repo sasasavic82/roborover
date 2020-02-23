@@ -1,0 +1,45 @@
+.button-element, .button-300-150 {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+
+.button-text {
+  width: 100%;
+  font-size: 4vw;
+}
+
+.button-80 {
+  position: absolute;
+  width: 80%;
+  height: 50%;
+  left: 50%;
+  margin-left: -40%;
+  font-size: 10px;
+}
+
+.dpad-absolute-container, .dpad-relative-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.swipe-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0;
+}
+
+.swipe-pattern-container {
+  text-align: center;
+  font-family: sans-serif;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  max-height: 300px;
+  position: relative;
+}

@@ -1,0 +1,129 @@
+<!--
+
+
+
+
+   INSTEAD OF EDITING THIS HTML FILE, USE OUR CONTROLLER GENERATOR:
+   http://developers.airconsole.com/tools/airconsole-controls/ctrl-generator/controller.html
+
+
+
+
+!-->
+<html>
+  <head>
+    <script type="text/javascript" src="../touch-area/touch-area.js"></script>
+    <script type="text/javascript" src="fake-airconsole.js"></script>
+    <script type="text/javascript" src="../rate-limiter/rate-limiter.js"></script>
+    <style type="text/css">
+      body {
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      .example-container {
+        position: relative;
+        background-color: #3b3b3b;
+        text-align: center;
+        font-family: sans-serif;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        max-width: 720px;
+        max-height: 360px;
+      }
+
+      /* You need to explicitly position your joystick */
+      #touch_area_left {
+        position: absolute;
+        width: 42.5%;
+        height: 90%;
+        top: 5%;
+        left: 5%;
+        background-color: #1f1f1f;
+      }
+
+      #touch_area_right {
+        position: absolute;
+        width: 42.5%;
+        height: 90%;
+        top: 5%;
+        right: 5%;
+        background-color: #1f1f1f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="example-container">
+      <div id="touch_area_left" class="joystick">
+        <div class="joystick-relative">
+          <div class="joystick-relative-stick"></div>
+        </div>
+      </div>
+      <div id="touch_area_right" class="joystick">
+        <div class="joystick-relative">
+          <div class="joystick-relative-stick"></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var airconsole = new AirConsole();
+      var rateLimiter = new RateLimiter(airconsole);
+      var touch_area_left = new TouchArea("touch_area_left", {
+        "touchstart": function(position) {
+          rateLimiter.message(AirConsole.SCREEN, {
+            "touch_area_left": {
+              "action": "start",
+              "position": position
+            }
+          });
+        },
+        "touchmove": function(position) {
+          rateLimiter.message(AirConsole.SCREEN, {
+            "touch_area_left": {
+              "action": "move",
+              "position": position
+            }
+          });
+        },
+        "touchend": function(position) {
+          rateLimiter.message(AirConsole.SCREEN, {
+            "touch_area_left": {
+              "action": "end",
+              "position": position
+            }
+          });
+        }
+      });
+      var touch_area_right = new TouchArea("touch_area_right", {
+        "touchstart": function(position) {
+          rateLimiter.message(AirConsole.SCREEN, {
+            "touch_area_right": {
+              "action": "start",
+              "position": position
+            }
+          });
+        },
+        "touchmove": function(position) {
+          rateLimiter.message(AirConsole.SCREEN, {
+            "touch_area_right": {
+              "action": "move",
+              "position": position
+            }
+          });
+        },
+        "touchend": function(position) {
+          rateLimiter.message(AirConsole.SCREEN, {
+            "touch_area_right": {
+              "action": "end",
+              "position": position
+            }
+          });
+        }
+      });
+
+    </script>
+  </body>
+</html>

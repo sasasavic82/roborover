@@ -1,0 +1,149 @@
+body {
+  font-family: 'Play', Helvetica, Verdana, sans-serif;
+}
+
+.hide {
+  display: none;
+}
+
+.alert {
+  background: #FFC107;
+  padding: 1em;
+  box-sizing: border-box;
+  font-size: 1.5em;
+  color: #FFF;
+  margin: 2em 0;
+}
+
+.alert h3 {
+  margin:  0 0 1em 0;
+  padding: 0;
+}
+
+.container {
+  width: 900px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.generator_container {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-width: 900px;
+  background: #545454;
+  padding: 15px;
+}
+
+.gamepad_container {
+  max-width: 900px;
+  max-height: 450px;
+}
+
+.get_started_container {
+  background: #3498db;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 20px;
+  border-radius: 4px;
+  padding: 14px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.get_started_container:hover {
+  cursor: pointer;
+}
+
+#output {
+  width: 900px;
+  min-height: 220px;
+  border: 4px solid #27ae60;
+  background: #2ecc71;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-family: 'Courier New', Helvetica, sans-serif;
+  padding: 10px;
+}
+
+h4.output {
+  margin: 20px 0 5px 0;
+}
+
+.generator_container .left, .generator_container .middle, .generator_container .right {
+  text-align: center;
+}
+
+.gamepad_container {
+  border: 15px solid #000000;
+}
+
+#template_button_form, .info {
+  display: none;
+}
+
+.info {
+  text-align: left;
+  margin: 10px 0 10px 0;
+  background: #3498db;
+  color: #FFFFFF;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+
+}
+
+.template_button_form {
+  margin-top: 10px;
+  text-align: left;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+}
+
+.template_button_form input[type="text"] {
+  padding: 4px;
+  font-size: 14px;
+}
+
+.add_bttn {
+  border: 1px solid #1abc9c;
+  background: #1abc9c;
+  color: #FFFFFF;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.template_button_form h4 {
+  margin: 0;
+}
+
+#middle_bttn_label {
+  border: 1px solid #333333;
+  width: 80px;
+  padding: 4px;
+}
+
+#middle_bttn_add, #middle_bttn_remove {
+  width: 80px;
+  background: #34495e;
+  color: #FFFFFF;
+  border: 1px solid #2c3e50;
+  margin-top: 5px;
+}
+
+#middle_bttn_remove {
+  margin-top: 10px;
+  background: #e74c3c;
+  border: 1px solid #c0392b;
+}
+
+.bttn {
+  background: #2980b9;
+  color: #FFFFFF;
+  font-size: 14px;
+  border: 2px solid #2980b9;
+  padding: 4px;
+  border-radius: 4px;
+}

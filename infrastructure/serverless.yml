@@ -1,0 +1,41 @@
+service: acg-roborover
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+plugins:
+  - serverless-pseudo-parameters
+  - serverless-iam-roles-per-function
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    REGION: ${self:provider.region}
+    TELEMETRY_TABLE: telemetry-${self:provider.stage}
+    IMAGE_TABLE: images-${self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchWriteItem
+      Resource:
+        - "Fn::GetAtt": [ TelemetryTable, Arn ]
+        - "Fn::GetAtt": [ ImageTable, Arn ]
+
+functions:
+  - ${file(./services/telemetry/functions.yml)}
+  - ${file(./services/control/functions.yml)}
+  - ${file(./services/recognition/functions.yml)}
+
+resources:
+  - ${file(./shared/resources.yml)}
+  - ${file(./services/telemetry/resources.yml)}
+  - ${file(./services/recognition/resources.yml)}
