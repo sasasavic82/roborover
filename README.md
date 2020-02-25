@@ -92,7 +92,69 @@ To install Raspbian for Robots, please select either or both of the below links:
 - [Dexter] Industries How-To: https://www.dexterindustries.com/howto/install-raspbian-for-robots-image-on-an-sd-card/
 
 *NOTE* You also need to make sure to configure your RoboRover to connect to your Wi-Fi network (and the internet), by configuring connectivity
-settings. Please visit [Connecting] to your Raspberry Pi and configuring WiFi.
+settings. Please visit [Connecting] to your Raspberry Pi and configuring WiFi. (Also make sure you enable SSH)
+
+#### Dependencies
+
+Although Raspbian for Robots comes pre-installed with dependencies, make sure they are all there and up to date.
+
+1. Upate Operating System and Hardware Profiles
+```
+$ sudo apt-get update
+$ sudo apt-get upgrade
+```
+
+2. Install latest Node
+```
+$ wget https://nodejs.org/dist/v13.9.0/node-v13.9.0-linux-armv7l.tar.gz
+$ tar -xzf node-v13.9.0-linux-armv7l.tar.gz
+$ cd node-v13.9.0-linux-armv7l/
+$ sudo cp -R * /usr/local/
+```
+
+Check if node and npm has been installed corretly:
+```
+$ node -v
+$ npm -v
+```
+
+2. Install latest Python
+```
+$ sudo apt-get install -y build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev
+$ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
+$ sudo tar zxf Python-3.7.0.tgz
+$ cd Python-3.7.0
+$ sudo ./configure
+$ sudo make -j 4
+$ sudo make altinstall
+```
+
+Check for correct version:
+```
+$ python3.7 -V
+```
+
+Make Python3.7 the default version:
+```
+$ nano ~/.bashrc
+```
+
+Add the following alias:
+```
+alias python='/usr/local/bin/python3.7'
+```
+
+and source the .bashrc file:
+```
+$ source ~/.bashrc
+```
+
+Check for correct version:
+```
+$ python -V
+Python 3.7.0
+```
+
 
 ## Support
 
