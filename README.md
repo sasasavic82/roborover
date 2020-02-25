@@ -13,6 +13,8 @@ to unforseen circumstances, that is no longer the case.
 Instead, I've decided to open source the entire codebase. This will serve as a great introduction to robotics, cloud, machine learning,
 HTTP REST APIs, IoT and a bunch of other interesting general software engineering concepts and algorithms.
 
+![Alt text](./docs/roborover-in-action.gif)
+
 ----
 
 ## Project Structure
