@@ -8,7 +8,8 @@ let config;
 let device;
 let interval;
 
-process.stdin.setRawMode(true);
+if(process.stdin.setRawMode)
+    process.stdin.setRawMode(true);
 process.stdin.resume();
 process.stdin.on('data', () => {
 

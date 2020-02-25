@@ -98,7 +98,7 @@ function bootstrap() {
 function clean_build() {
     log "clean_build" "cleaning previous versions of RoboRover roverOS" "info" 
 
-    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt $ROBOROVER_HOSTNAME -q << EOT
+    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME" -q << EOT
 rm -rf rovertemp
 rm -rf roveros
 mkdir rovertemp
@@ -110,24 +110,67 @@ EOT
 
 function copy_build() {
     log "copy_build" "copying build to $ROBOROVER_HOSTNAME:rovertemp/ ..." "info"
-    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD scp ./build/roborover.zip "$ROBOROVER_HOSTNAME:rovertemp/"
+    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD scp ./build/roborover.zip "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME:rovertemp/"
     log "copy_build" "build copied" "ok" 
 }
 
 function install_build() {
     log "install_build" "installing roverOS..." "info"
 
-    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt $ROBOROVER_HOSTNAME -q << EOT
+    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME" -q << EOT
+pkill -f rover_start
+pkill -f index.js
 cd rovertemp
 unzip roborover.zip
 mv roveros /home/pi
 cd /home/pi/roveros
 npm install
-sh rover_start.sh &
+sh rover_start.sh >>roborover.log 2>&1 &
 exit
 EOT
 
     log "install_build" "roverOS installed" "ok" 
+}
+
+function start_roveros() {
+    log "start_roveros" "starting roverOS..." "info"
+
+    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME" -q << EOT
+pkill -f rover_start
+pkill -f index.js
+cd roveros
+sh rover_start.sh >>roborover.log 2>&1 &
+exit
+EOT
+
+    log "start_roveros" "started roverOS" "ok" 
+}
+
+function stop_roveros() {
+    log "start_roveros" "starting roverOS..." "info"
+
+    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME" -q << EOT
+pkill -f rover_start
+pkill -f index.js
+exit
+EOT
+
+    log "start_roveros" "started roverOS" "ok" 
+}
+
+function setup_refresh() {
+    ENV=${1:-dev}
+    REGION=${2:-$DEFAULT_AWS_REGION}
+
+    export AWS_DEFAULT_REGION=$REGION 
+
+    if logged_into_aws; then
+        create_certificates
+        setup_endpoints
+    else
+        exit 255
+    fi
+
 }
 
 function setup_roborover() {

@@ -171,7 +171,7 @@ The RoboRover Application Architecture comes in 3 parts, and we will discuss eac
 RoboRover `infrastructure` is fully hosted on AWS Cloud. It provides the primary conduit for RoboRover's telemetry, control and offloading of images for processing
 by AWS' Machine Learning services, namely AWS Rekognition.
 
-The entire infrastructure stack is created using `serverless` framework. Infrastructure lives in `infrastructure` folder. To create the RoboRover infrastructure, run
+The entire infrastructure stack is created using `serverless` framework, with the codebase living in the `infrastructure` folder. To create the RoboRover infrastructure, run
 the `roborover` CLI from the root of the repository:
 
 ```
@@ -191,6 +191,8 @@ devices. RoboRover can loosely be classified as an IoT device.
 3. Scheduling command execution via a command scheduler
 4. Interfacing directly with RoboRover's hardware via a SDK, written by the good people of [Dexter] Industries, specifically for GoPiGo3 board.
 5. Collecting and sending telemetry (sensor readings, or GPS location if you decide to integrate a GPS sensor)
+
+RoboRover `roverOS` lives in the `roveros` folder.
 
 Once you have assembled your RoboRover, installed all of the dependencies and connected to your WiFi network, deployed the infrastructure (previous step), you can
 proceed to install the `roverOS` by simply running the following command from the repository root:
@@ -218,6 +220,30 @@ $ ./roborover setup prod ap-southeast-2
 $ ./roborover deploy <basestation|base>
 ```
 
+
+## Gotchas
+There will probably be some gotchas, especially when dealing with Raspberry Pi :) ... I've tried to keep them at a minimum, but here is one to note:
+
+1. If you're running a command: `./roborover forward 1000` for example, and you get:
+```
+$ ./roborover left 2000
+
+    ____        __          ____                      
+   / __ \____  / /_  ____  / __ \____ _   _____  _____
+  / /_/ / __ \/ __ \/ __ \/ /_/ / __ \ | / / _ \/ ___/
+ / _, _/ /_/ / /_/ / /_/ / _, _/ /_/ / |/ /  __/ /    
+/_/ |_|\____/_.___/\____/_/ |_|\____/|___/\___/_/     
+                                                      
+
+✔  (check_dependencies) dependencies ok
+endpoint: 
+✘  (validate) RoboRover control API env variable ROBOROVER_CONTROL_ENDPOINT not set. run ./runbot setup
+```
+You can run:
+
+```
+$ ./roborover refresh
+```
 ## Support
 
 For support, please please raise a support ticket or reach out on [LinkedIn] :)

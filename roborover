@@ -34,6 +34,22 @@ while [ "$#" -gt 0 ]; do
                 exit 2;;
           esac;;
 
+    roveros) 
+          case "$2" in 
+            start)   
+                start_roveros
+                shift 2;;
+            stop)  
+                stop_roveros
+                shift 2;;
+            *) 
+                log "validate" "unknown option: $2" "fail" >&2;
+                exit 2;;
+          esac;;
+
+    refresh)      setup_refresh $2 $3
+                shift 3;;
+
     setup)      setup_roborover $2 $3
                 shift 3;;
 
