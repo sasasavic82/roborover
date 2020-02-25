@@ -1,36 +1,74 @@
 #!/bin/bash
+set -eo pipefail
 
-if [ -z "$ROBOROVER_CONTROL_ENDPOINT" ]; then
-    echo "RoboRover control API env variable ROBOROVER_CONTROL_API not set."
-    exit 255
-fi
+# get current working dir
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-function run_api() {
-    
-    local command=${1}
-    local val=${2}
+# load libs
+. "$CURRENT_DIR/lib/scripts/constants.bash"
+. "$CURRENT_DIR/lib/scripts/shared.bash"
+. "$CURRENT_DIR/lib/scripts/roborover.bash"
+. "$CURRENT_DIR/lib/scripts/setup.bash"
 
-    local data="{ \"type\": \"${command}\", \"attributes\": { \"rotation\": ${val} } }"
+# draw art
+ascii
 
-    response=$(curl --header "Content-Type: application/json" --request POST --data "${data}" $ROBOROVER_CONTROL_ENDPOINT --silent)
+# evaluate input
 
-    echo $response
+while [ "$#" -gt 0 ]; do
+  case "$1" in
 
-    if [ $? -ne 0 ]; then
-        printf "\nUnable to connect to RoboRover control API\n"
-        exit 255
-    fi    
-}
+    setup)      setup_roborover $2 $3
+                shift 3;;
 
-if [ -z "$1" ]; then 
-    echo "RoboRover command required."
-    echo "available commands: pan, tilt, forward, stop, left, right, drive_cm, drive_degrees, set_speed, image"
-    exit 255
-fi
+    pan)        validate
+                run_api "pan" $2
+                shift 2;;
 
-if [ -z "$2" ]; then 
-    echo "RoboRover command [$1] requires value"
-    exit 255
-fi
+    tilt)       validate
+                run_api "tilt" $2
+                shift 2;;
 
-run_api $1 $2
+    forward)    validate
+                run_api "forward" $2
+                shift 2;;
+
+    backward)   validate
+                run_api "backward" $2
+                shift 2;;
+
+    stop)       validate
+                run_api "stop" $2
+                shift 2;;
+
+    left)       validate
+                run_api "left" $2
+                shift 2;;
+
+    right)      validate
+                run_api "right" $2
+                shift 2;;
+
+    drive-cm)   validate
+                run_api "drive_cm" $2
+                shift 2;;
+
+    drive-deg)  validate
+                run_api "drive_degrees" $2
+                shift 2;;
+
+    speed)      validate
+                run_api "set_speed" $2
+                shift 2;;
+
+    speed)      validate
+                run_api "image" 0
+                shift 2;;
+
+    -*) 
+        log "validate" "unknown option: $1" "fail" >&2;
+        exit 1;;
+
+    *) handle_argument "$1"; shift 1;;
+  esac
+done
