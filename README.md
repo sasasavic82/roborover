@@ -47,11 +47,11 @@ You can purchase the complete kit for `$200` that comes with additional hardware
 
 **You can buy the individual parts from the manifacturer, particularly if you have your own Raspberry Pi 3 (or 4).**
 
-### Additional Hardware
+#### Additional Hardware
 
 The original kit comes only with a distance sensor, so you will have to purchase some additional hardware if you want to give your RoboRover some eyes :)
 
-#### Pan / Tilt 2-Axis Servo Package and Pi Camera
+##### Pan / Tilt 2-Axis Servo Package and Pi Camera
 
 - Raspberry Pi [Camera]
 
@@ -64,7 +64,7 @@ The original kit comes only with a distance sensor, so you will have to purchase
 The single servo motor setup will only give your camera single axis `pan` capabilities, so if you'd like to have `tilt` capabilites too, you will
 need to purchase an additional Servo Motor Package. I recommend getting a `pan\tilt` combo kit mount. Here is an example kit: [PanTiltKit]
 
-#### Environment Sensor
+##### Environment Sensor
 
 If you'd like to purchase additional sensors, you may do so from Dexter Industries website. I've purchased the Temperature Humidity Pressure sensor,
 and data captured will be offloaded as part of the `telemetry payload`. They have other sensors, however, you will need to extend my original code-base
@@ -155,6 +155,68 @@ $ python -V
 Python 3.7.0
 ```
 
+### RoboRover Application Architecture
+
+Finally!!!! Here comes the fun part :)
+
+![Alt text](./docs/roborover-architecture.png)
+Top-level RoboRover Architecture
+
+The RoboRover Application Architecture comes in 3 parts, and we will discuss each individually.
+
+***NOTE: Infrastructure needs to be deployed first***
+
+### Infrastructure
+
+RoboRover `infrastructure` is fully hosted on AWS Cloud. It provides the primary conduit for RoboRover's telemetry, control and offloading of images for processing
+by AWS' Machine Learning services, namely AWS Rekognition.
+
+The entire infrastructure stack is created using `serverless` framework. Infrastructure lives in `infrastructure` folder. To create the RoboRover infrastructure, run
+the `roborover` CLI from the root of the repository:
+
+```
+$ ./roborover deploy <infrastructure|infra>
+```
+
+***NOTE: Make sure that you configure your default `AWS_DEFAULT_PROFILE` profile, so that you are deploying the infrastructure to the right AWS account.***
+
+
+### roverOS
+
+RoboRover `roverOS` is a simple Node based operating system. It runs on RoboRover Raspbian for Robots OS as a background service. It's primary purpose is:
+
+1. Connecting to the AWS IoT infrastructure via an MQTT (Message Queueing Telemetry Transport) protocol. MQTT is a light-weight protocol used on connecting IoT
+devices. RoboRover can loosely be classified as an IoT device.
+2. Receiving control commands via IoT infrastructure
+3. Scheduling command execution via a command scheduler
+4. Interfacing directly with RoboRover's hardware via a SDK, written by the good people of [Dexter] Industries, specifically for GoPiGo3 board.
+5. Collecting and sending telemetry (sensor readings, or GPS location if you decide to integrate a GPS sensor)
+
+Once you have assembled your RoboRover, installed all of the dependencies and connected to your WiFi network, deployed the infrastructure (previous step), you can
+proceed to install the `roverOS` by simply running the following command from the repository root:
+
+```
+$ ./roborover setup
+```
+
+The setup will run through the following:
+1. Create certificates required by the IoT infrastructure for secure MQTT communication
+2. Generate HTTP REST API endpoints
+3. Package, transfer and install `roverOS` on the RoboRover (by connecting directly via SSH)
+4. Run `roverOS` in the background
+
+NOTE:
+You may also like to provide additional parameters to the `roborover setup`:
+```
+# Usage: ./roborover setup <env> <region> 
+$ ./roborover setup prod ap-southeast-2 
+```
+
+### Basestation UI
+
+```
+$ ./roborover deploy <basestation|base>
+```
 
 ## Support
 

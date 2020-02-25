@@ -1,4 +1,3 @@
-var baseUrl = 'https://q0lh864dc2.execute-api.us-east-1.amazonaws.com/dev/api/';
 
 var commands = {
   type: 'commands',
@@ -19,7 +18,7 @@ $(document).ready(function() {
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        url: baseUrl + 'control',
+        url: config.control_endpoint,
         success: function(result) {
           console.log(result);
           $( ".output" ).text(result);
@@ -41,7 +40,7 @@ $(document).ready(function() {
           }),
           contentType: "application/json; charset=utf-8",
           dataType: "json",
-          url: baseUrl + 'control',
+          url: config.control_endpoint,
           success: function(result) {
             console.log(result);
             $( ".output" ).text(result);

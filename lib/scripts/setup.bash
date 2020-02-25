@@ -78,11 +78,14 @@ function bootstrap() {
     log "bootstrap" "bootstrapping RoboRover..." "info" 
 
     touch ./roveros/config/bootstrap.json
+    touch ./ui/static/config.js
 
     echo "{
         \"endpoint\": \"${ENDPOINT}\",
         \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\"
     }" > ./roveros/config/bootstrap.json
+
+    echo "var config = { \"control_endpoint\": \"${ROBOROVER_CONTROL_ENDPOINT}\", \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\" }" > ./ui/static/config.js
 
     # Zip it
     zip -r ./build/roborover.zip ./roveros -x ./roveros/node_modules/**\* ./roveros/*.git*
@@ -120,6 +123,7 @@ unzip roborover.zip
 mv roveros /home/pi
 cd /home/pi/roveros
 npm install
+sh rover_start.sh &
 exit
 EOT
 
@@ -155,5 +159,43 @@ function setup_roborover() {
     fi
 
     log "setup_roborover" "completed RoboRover setup" "ok"
+
+}
+
+function deploy_roborover() {
+
+    ENV=${1:-dev}
+    REGION=${2:-$DEFAULT_AWS_REGION}
+
+    if logged_into_aws; then
+        cd infrastructure
+        log "deploy_roborover" "deploying RoboRover infrastructure" "info"
+        serverless deploy --region $REGION --stage $ENV -v 
+        log "deploy_roborover" "deployed RoboRover infrastructure" "ok"
+    else
+        cd $CURRENT_DIR
+        exit 255
+    fi
+
+    cd $CURRENT_DIR
+
+}
+
+function deploy_basestation() {
+
+    ENV=${1:-dev}
+    REGION=${2:-$DEFAULT_AWS_REGION}
+
+    if logged_into_aws; then
+        cd ui
+        log "deploy_basestation" "deploying RoboRover basestation" "info"
+        serverless deploy --region $REGION --stage $ENV -v
+        log "deploy_basestation" "deployed RoboRover basestation" "ok"
+    else
+        cd $CURRENT_DIR
+        exit 255
+    fi
+
+    cd $CURRENT_DIR
 
 }

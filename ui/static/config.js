@@ -1,0 +1,1 @@
+var config = { "control_endpoint": "https://jkqtjlhx99.execute-api.us-east-1.amazonaws.com/dev/api/control", "recognition_endpoint": "https://jkqtjlhx99.execute-api.us-east-1.amazonaws.com/dev/api/recognize" }

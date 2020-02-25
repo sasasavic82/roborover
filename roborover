@@ -13,10 +13,26 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # draw art
 ascii
 
+# check dependencies
+check_dependencies
+
 # evaluate input
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
+
+    deploy) 
+          case "$2" in 
+            infrastructure|infra)   
+                deploy_roborover $3 $4
+                shift 4;;
+            basestation|base)  
+                deploy_basestation $3 $4
+                shift 4;;
+            *) 
+                log "validate" "unknown option: $2" "fail" >&2;
+                exit 2;;
+          esac;;
 
     setup)      setup_roborover $2 $3
                 shift 3;;
@@ -65,10 +81,9 @@ while [ "$#" -gt 0 ]; do
                 run_api "image" 0
                 shift 2;;
 
-    -*) 
+    *) 
         log "validate" "unknown option: $1" "fail" >&2;
         exit 1;;
 
-    *) handle_argument "$1"; shift 1;;
   esac
 done
