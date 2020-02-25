@@ -274,7 +274,7 @@ $ ./roborover refresh
 
 ## Support
 
-For support, please please raise a support ticket or reach out on [LinkedIn] :)
+For support, please please raise a support ticket :)
 
 [Connecting]: https://www.dexterindustries.com/GoPiGo/get-started-with-the-gopigo3-raspberry-pi-robot/2-connect-to-the-gopigo-3/Raspbian-For-Robots-Operating-System/
 [PanTiltKit]: https://www.servocity.com/spt50
