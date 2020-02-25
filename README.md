@@ -17,12 +17,13 @@ HTTP REST APIs, IoT and a bunch of other interesting general software engineerin
 
 ## Project Structure
 
-RoboRover comes in two parts:
+RoboRover comes in 3 parts:
 
-1. The base hardware; and
-2. Software components
+1. RoboRover base hardware
+2. Roborover base software dependencies (Raspbian for Robots OS, dependencies); and
+3. Application stack (Basestation UI, Infrastructure & roverOS Services)
 
-### Hardware
+### RoboRover Base Hardware
 
 RoboRover is built upon an existing robotics platform from [Dexter] Industries, and can be purchased here in it's entirety: [GoPiGo3]. 
 The base kit costs around `$100` and includes the most essential components (without the Raspberry Pi):
@@ -69,18 +70,33 @@ and expose those measurements if you wish to do so.
 
 ![Alt text](./docs/TempHumPress.png)
 
-### Software
+### RoboRover Base Software Stack
+
+The RoboRover software stack will be divided in few parts, but first we need to make sure that once we've assembled the RoboRover, we install all
+of the dependencies required to successfully run `roverOS` services on top.
+
+![Alt text](./docs/software-stack.png)
 
 
-### Requirements
+#### Raspbian for Robots Operating System
 
-* NodeJS v10
+[Dexter] Industries has two different options when it comes to the Raspberry Pi's operating system for your robotics projects. RoboRover prefers
+that you install Raspbian for Robots instead of DexterOS, since DexterOS is better suited to teaching and learning with "drag-and-drop" style of
+programming. Raspbian, on the other hand, is more suitable for OEM-type projects, and more control of the underlying operating system.
 
+To install Raspbian for Robots, please select either or both of the below links:
+
+- YouTube Video: https://www.youtube.com/watch?v=1J8AAww6Ucw
+- [Dexter] Industries How-To: https://www.dexterindustries.com/howto/install-raspbian-for-robots-image-on-an-sd-card/
+
+*NOTE* You also need to make sure to configure your RoboRover to connect to your Wi-Fi network (and the internet), by configuring connectivity
+settings. Please visit [Connecting] to your Raspberry Pi and configuring WiFi.
 
 ## Support
 
 For support, please please raise a support ticket or reach out on [LinkedIn] :)
 
+[Connecting]: https://www.dexterindustries.com/GoPiGo/get-started-with-the-gopigo3-raspberry-pi-robot/2-connect-to-the-gopigo-3/Raspbian-For-Robots-Operating-System/
 [PanTiltKit]: https://www.servocity.com/spt50
 [Servo]: https://shop.dexterindustries.com/shop/sensors-accessories/sensors-actuators/servo-package
 [Camera]: https://shop.dexterindustries.com/shop/sensors-accessories/sensors-actuators/raspberry-pi-camera
