@@ -21,6 +21,10 @@ HTTP REST APIs, IoT and a bunch of other interesting general software engineerin
 
 Whilst there is sufficient documentation, I will continue to refine it and add more content.
 
+## Introducing RoboRover
+
+![Alt text](./docs/real-rover.jpg)
+
 ## Project Structure
 
 RoboRover comes in 3 parts:
