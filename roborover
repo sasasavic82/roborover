@@ -10,6 +10,17 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 . "$CURRENT_DIR/lib/scripts/roborover.bash"
 . "$CURRENT_DIR/lib/scripts/setup.bash"
 
+function help() {
+  echo "$0 [command | [subcommand]] <options>"
+  printf "\nCommands:\n\n"
+  echo "$0 deploy [infrastructure|basesestation] <environment> <region> (optional)"
+  echo "$0 roveros [start|stop]"
+  echo "$0 refresh"
+  echo "$0 setup"
+  echo "$0 command [pan|tilt|forward|backward|left|right|stop|drive_cm|drive_deg|speed|image] <value>"
+  echo "$0 help"
+}
+
 # draw art
 ascii
 
@@ -53,50 +64,62 @@ while [ "$#" -gt 0 ]; do
     setup)      setup_roborover $2 $3
                 shift 3;;
 
-    pan)        validate
-                run_api "pan" $2
-                shift 2;;
+    command|cmd)
 
-    tilt)       validate
-                run_api "tilt" $2
-                shift 2;;
+      case "$2" in
 
-    forward)    validate
-                run_api "forward" $2
-                shift 2;;
+        pan)        validate
+                    run_api "pan" $3
+                    shift 3;;
 
-    backward)   validate
-                run_api "backward" $2
-                shift 2;;
+        tilt)       validate
+                    run_api "tilt" $3
+                    shift 3;;
 
-    stop)       validate
-                run_api "stop" $2
-                shift 2;;
+        forward)    validate
+                    run_api "forward" $3
+                    shift 3;;
 
-    left)       validate
-                run_api "left" $2
-                shift 2;;
+        backward)   validate
+                    run_api "backward" $3
+                    shift 3;;
 
-    right)      validate
-                run_api "right" $2
-                shift 2;;
+        stop)       validate
+                    run_api "stop" $3
+                    shift 3;;
 
-    drive-cm)   validate
-                run_api "drive_cm" $2
-                shift 2;;
+        left)       validate
+                    run_api "left" $3
+                    shift 3;;
 
-    drive-deg)  validate
-                run_api "drive_degrees" $2
-                shift 2;;
+        right)      validate
+                    run_api "right" $3
+                    shift 3;;
 
-    speed)      validate
-                run_api "set_speed" $2
-                shift 2;;
+        drive-cm)   validate
+                    run_api "drive_cm" $3
+                    shift 3;;
 
-    speed)      validate
-                run_api "image" 0
-                shift 2;;
+        drive-deg)  validate
+                    run_api "drive_degrees" $3
+                    shift 3;;
 
+        speed)      validate
+                    run_api "set_speed" $3
+                    shift 3;;
+
+        image|img)      validate
+                    run_api "image" 0
+                    shift 3;;
+
+        *) 
+            log "validate" "unknown command: $2" "fail" >&2;
+            exit 2;;
+      esac;;
+
+    help)
+                help
+                shift 2;;
     *) 
         log "validate" "unknown option: $1" "fail" >&2;
         exit 1;;

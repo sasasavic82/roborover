@@ -31,6 +31,6 @@ image-get:
         - 'Fn::GetAtt': [ImageTable, Arn]
   events:
     - http:
-        path: api/recognize/{id}
+        path: api/recognize
         method: get
         cors: true

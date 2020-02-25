@@ -17,6 +17,10 @@ HTTP REST APIs, IoT and a bunch of other interesting general software engineerin
 
 ----
 
+## Note
+
+Whilst there is sufficient documentation, I will continue to refine it and add more content.
+
 ## Project Structure
 
 RoboRover comes in 3 parts:
@@ -225,6 +229,18 @@ To deploy basestation, run:
 $ ./roborover deploy <basestation|base>
 ```
 
+### RoboRover CLI
+
+RoboRover comes with a small CLI that you can use to setup the RoboRover, deploy various pieces of infrastructure and send it control commands:
+
+```
+./roborover deploy [infrastructure|basesestation] <environment> <region> (optional)
+./roborover roveros [start|stop]
+./roborover refresh
+./roborover setup
+./roborover command [pan|tilt|forward|backward|left|right|stop|drive_cm|drive_deg|speed|image] <value>
+./roborover help
+```
 
 ## Gotchas
 There will probably be some gotchas, especially when dealing with Raspberry Pi :) ... I've tried to keep them at a minimum, but here is one to note:
@@ -251,27 +267,6 @@ You can run:
 ```
 $ ./roborover refresh
 ```
-
-2. The backend will sometimes experience `Commander still initializing ...` message, when Lambda function goes dormant:
-
-```
-$ ./roborover tilt 160
-
-    ____        __          ____                      
-   / __ \____  / /_  ____  / __ \____ _   _____  _____
-  / /_/ / __ \/ __ \/ __ \/ /_/ / __ \ | / / _ \/ ___/
- / _, _/ /_/ / /_/ / /_/ / _, _/ /_/ / |/ /  __/ /    
-/_/ |_|\____/_.___/\____/_/ |_|\____/|___/\___/_/     
-                                                      
-
-✔  (check_dependencies) dependencies ok
-endpoint: https://jkqtjlhx99.execute-api.us-east-1.amazonaws.com/dev/api/control
-/!\  (run_api) calling: https://jkqtjlhx99.execute-api.us-east-1.amazonaws.com/dev/api/control
-/!\  (run_api) payload: { "type": "tilt", "attributes": { "rotation": 160 } }
-✔  (run_api) successful response: "Commander still initializing ..."
-```
-
-As a workaround, keep repeating the command until you get a successful response.
 
 ## Support
 

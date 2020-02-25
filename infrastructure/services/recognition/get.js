@@ -6,10 +6,8 @@ module.exports.handler = async (event, context, callback) => {
 
   console.log(event);
 
-  let id = parameterValue(event, "id");
-
   try {
-    let result = await ImageModel.query({ roboRoverId: id }).descending().limit(10).exec();
+    let result = await ImageModel.query({ roboRoverId: "robo_rover" }).descending().limit(10).exec();
     console.log(result);
     return callback(null, success(result));
 
