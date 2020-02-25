@@ -14,6 +14,8 @@ module.exports.handler = async (event) => {
 
   console.log(data);
 
+  await commander.initialize();
+
   try {
     let ret = await commander.execute(data);
     return success(ret);

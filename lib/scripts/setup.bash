@@ -78,14 +78,14 @@ function bootstrap() {
     log "bootstrap" "bootstrapping RoboRover..." "info" 
 
     touch ./roveros/config/bootstrap.json
-    touch ./ui/static/config.js
+    touch ./ui/static/lib/config.js
 
     echo "{
         \"endpoint\": \"${ENDPOINT}\",
         \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\"
     }" > ./roveros/config/bootstrap.json
 
-    echo "var config = { \"control_endpoint\": \"${ROBOROVER_CONTROL_ENDPOINT}\", \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\" }" > ./ui/static/config.js
+    echo "var config = { \"control_endpoint\": \"${ROBOROVER_CONTROL_ENDPOINT}\", \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\" }" > ./ui/static/lib/config.js
 
     # Zip it
     zip -r ./build/roborover.zip ./roveros -x ./roveros/node_modules/**\* ./roveros/*.git*

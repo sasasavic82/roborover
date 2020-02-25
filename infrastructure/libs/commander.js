@@ -48,15 +48,26 @@ class Commander {
         this.endpoint = undefined;
         this.iotData = undefined;
 
-        const iot = new Iot({ region: region });
+        this.iot = new Iot({ region: region });
 
-        iot.describeEndpoint({}, (err, data) => {
-            if(err) 
-                throw new Error(err);
+    }
 
-            this.endpoint = data.endpointAddress;
-            this.iotData = new IotData({ endpoint: data.endpointAddress });
-        });
+    initialize() {
+        return new Promise((res, rej) => {
+
+            if(this.endpoint)
+                return res();
+
+            this.iot.describeEndpoint({}, (err, data) => {
+                if(err) 
+                    return rej(err);
+    
+                this.endpoint = data.endpointAddress;
+                this.iotData = new IotData({ endpoint: data.endpointAddress });
+
+                return res();
+            });           
+        })
     }
 
     _buildCommandTopic(command) {

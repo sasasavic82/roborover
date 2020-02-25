@@ -216,6 +216,11 @@ $ ./roborover setup prod ap-southeast-2
 
 ### Basestation UI
 
+RoboRover Basestation is, *at this stage*, a very simple HTML/CSS and JS based UI, with the primary aim to be able to control control the RoboRover via the web.
+
+**NOTE: Currently the UI is still W.I.P. and I aim to make it pretty**
+
+To deploy basestation, run:
 ```
 $ ./roborover deploy <basestation|base>
 ```
@@ -223,6 +228,8 @@ $ ./roborover deploy <basestation|base>
 
 ## Gotchas
 There will probably be some gotchas, especially when dealing with Raspberry Pi :) ... I've tried to keep them at a minimum, but here is one to note:
+
+**NOTE: All gotchas will be addressed over time.**
 
 1. If you're running a command: `./roborover forward 1000` for example, and you get:
 ```
@@ -244,6 +251,28 @@ You can run:
 ```
 $ ./roborover refresh
 ```
+
+2. The backend will sometimes experience `Commander still initializing ...` message, when Lambda function goes dormant:
+
+```
+$ ./roborover tilt 160
+
+    ____        __          ____                      
+   / __ \____  / /_  ____  / __ \____ _   _____  _____
+  / /_/ / __ \/ __ \/ __ \/ /_/ / __ \ | / / _ \/ ___/
+ / _, _/ /_/ / /_/ / /_/ / _, _/ /_/ / |/ /  __/ /    
+/_/ |_|\____/_.___/\____/_/ |_|\____/|___/\___/_/     
+                                                      
+
+✔  (check_dependencies) dependencies ok
+endpoint: https://jkqtjlhx99.execute-api.us-east-1.amazonaws.com/dev/api/control
+/!\  (run_api) calling: https://jkqtjlhx99.execute-api.us-east-1.amazonaws.com/dev/api/control
+/!\  (run_api) payload: { "type": "tilt", "attributes": { "rotation": 160 } }
+✔  (run_api) successful response: "Commander still initializing ..."
+```
+
+As a workaround, keep repeating the command until you get a successful response.
+
 ## Support
 
 For support, please please raise a support ticket or reach out on [LinkedIn] :)

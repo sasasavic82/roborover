@@ -13,13 +13,24 @@ image-upload-recognition:
       Resource:
         - 'Fn::GetAtt': [ImageTable, Arn]
   events:
-#    - s3:
-#        bucket: rover-images-${self:provider.stage}
-#        event: s3:ObjectCreated:*
-#        rules:
-#          - prefix: uploads/
-#          - suffix: .jpg
     - http:
         path: api/recognize
         method: post
+        cors: true
+
+image-get:
+  handler: services/recognition/get.handler
+  iamRoleStatementsName: roborover-image-get-${self:provider.stage}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+      Resource:
+        - 'Fn::GetAtt': [ImageTable, Arn]
+  events:
+    - http:
+        path: api/recognize/{id}
+        method: get
         cors: true
