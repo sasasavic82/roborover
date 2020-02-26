@@ -22,6 +22,7 @@
     "commander": "^2.20.0",
     "pi-camera": "^1.2.1",
     "node-gopigo3": "^0.0.3",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "di-sensors": "^0.0.3"
   }
 }
