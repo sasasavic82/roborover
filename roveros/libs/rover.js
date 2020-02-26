@@ -3,7 +3,7 @@ const { TempHumPress } = require('di-sensors');
 const _ = require('lodash');
 const PiCamera = require('pi-camera');
 const { encodeFile } = require('./common');
-const Queue = require('./queue');
+const Scheduler = require('./scheduler');
 
 let request = require('request');
 
@@ -37,7 +37,7 @@ class Rover {
         this.servoHorizontal = undefined;
         this.servoVertical = undefined;
         this.tempHum = undefined;
-        this.commandQueue = new Queue();
+        this.commandQueue = new Scheduler();
         this.queueInterval = undefined;
 
         this.stopVehicle = this._stopVehicle.bind(this);

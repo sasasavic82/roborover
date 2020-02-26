@@ -1,7 +1,7 @@
 /**
  * Queue Class
  */
-class Queue {
+class Scheduler {
     constructor() {
         this.queue = [];
         this.isBlocked = false;
@@ -74,10 +74,10 @@ class Queue {
      * Report on queue
      */
     report() {
-        console.log('debug','[QUEUE]', 'Size: ' + this.size());
-        console.log('debug','[QUEUE]', 'Blocked: ' + this.isBlocked);
-        console.log('debug','[QUEUE]', 'Content: ' + JSON.stringify(this.queue));
+        console.log('debug','[SCHEDULER]', 'Size: ' + this.size());
+        console.log('debug','[SCHEDULER]', 'Blocked: ' + this.isBlocked);
+        console.log('debug','[SCHEDULER]', 'Content: ' + JSON.stringify(this.queue));
     }
 }
 
-module.exports = Queue;
+module.exports = Scheduler;
