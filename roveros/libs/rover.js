@@ -1,4 +1,5 @@
 const { EasyGopigo3 } = require('node-gopigo3');
+const { TempHumPress } = require('di-sensors');
 const _ = require('lodash');
 const PiCamera = require('pi-camera');
 const { encodeFile } = require('./common');
@@ -35,7 +36,7 @@ class Rover {
         this.distanceSensor = undefined;
         this.servoHorizontal = undefined;
         this.servoVertical = undefined;
-
+        this.tempHum = undefined;
         this.commandQueue = new Queue();
         this.queueInterval = undefined;
 
@@ -54,6 +55,11 @@ class Rover {
             console.log('error', '[ROVER_INIT]', JSON.stringify(e));
         }
 
+        try {
+            this.tempHum = new TempHumPress('RPI_1');
+        }catch(e) {
+            console.log('error', '[ROVER_INIT]', JSON.stringify(e))
+        }
         this.camera = new PiCamera({
             mode: 'photo',
             width: 640,
@@ -79,12 +85,18 @@ class Rover {
 
         let volt = this.gpg.volt();
         let speed = this.gpg.getSpeed();
-        let distance = this.distanceSensor ? this.distanceSensor.read() : -1; //this.distanceSensor.read();
+        let distance = this.distanceSensor ? this.distanceSensor.read() : -1;
+        let temperature = this.tempHum ? this.tempHum.getTemperatureCelsius() : -1;
+        let pressure = this.tempHum ? this.tempHum.getPressure() : -1;
+        let humidity = this.tempHum ? this.tempHum.getHumidity() : -1;
 
         return {
             voltage: volt,
             speed: speed,
-            distance: distance
+            distance: distance,
+            temperature: temperature,
+            pressure: pressure,
+            humidity: humidity
         }
     }
 
