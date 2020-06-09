@@ -39,6 +39,8 @@ function log() {
         prefix="${YT}"
     elif [ "$type" == "debug" ]; then
         prefix="${YT}"
+    elif [ "$type" == "info" ]; then
+        prefix="${YT}"
     else 
         prefix="-"
     fi 
