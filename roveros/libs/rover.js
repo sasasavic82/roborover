@@ -9,25 +9,6 @@ let request = require('request');
 
 const COMMANDS = ['forward', 'backward', 'stop', 'left', 'right', 'tilt', 'pan', 'drive_cm', 'drive_degrees', 'left_eye', 'right_eye', 'set_speed', 'image', 'bulk'];
 
-
-
-class RoverCommand {
-
-    constructor(gpg) {
-        this.gpg = gpg;
-    }
-
-    getControllerInstance() {
-        return this.gpg;
-    }
-
-    kill() {
-        this.gpg.stop();
-        this.gpg.resetAll();
-    }
-
-}
-
 class Rover {
 
     constructor(config) {
