@@ -1,0 +1,21 @@
+extends:
+  - airbnb
+  - plugin:jest/recommended
+  - plugin:json/recommended
+  - plugin:prettier/recommended
+  - prettier/react
+plugins:
+  - import
+  - jest
+  - prettier
+rules:
+  import/no-unresolved: 'error'
+  no-console: 'off'
+  no-use-before-define: 'off'
+  no-underscore-dangle: 'off'
+  react/jsx-filename-extension: 'off'
+  react/no-array-index-key: 'warn'
+  react/prop-types: 'warn'
+parser: 'babel-eslint'
+env:
+  jest/globals: true

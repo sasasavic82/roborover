@@ -1,0 +1,91 @@
+.mailbox {
+  .drop-title {
+    font-weight: $font-weight-medium;
+    padding: 11px 20px 15px;
+    border-radius: $border-radius $border-radius 0 0;
+    position: relative;
+    &:after {
+      background: $topbar-droptitle-bg;
+      content: '';
+      position: absolute;
+      
+      opacity: 0.2;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+    }
+  }
+  .nav-link {
+    border-top: 1px solid $border-color;
+    padding-top: 15px;
+  }
+
+  .message-center {
+    overflow: auto;
+    position: relative;
+    .message-item {
+      border-bottom: 1px solid $border-color;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      padding: 9px 15px;
+      cursor: pointer;
+      &:hover, &.active {
+        background: $gray-100;
+      }
+      .message-title {
+        color: $gray-900;
+      }
+      .user-img {
+        width: 40px;
+        position: relative;
+
+        img {
+          width: 100%;
+        }
+        .profile-status {
+          border: 2px solid $white;
+          border-radius: 50%;
+          display: inline-block;
+          height: 10px;
+          left: 30px;
+          position: absolute;
+          top: 1px;
+          width: 10px;
+        }
+        .online {
+          background: $success;
+        }
+        .busy {
+          background: $danger;
+        }
+        .away {
+          background: $warning;
+        }
+        .offline {
+          background: $warning;
+        }
+      }
+      .mail-contnet {
+        width: 85%;
+        vertical-align: middle;
+        padding-left: 15px;
+        .message-title {
+          margin: 5px 0px 0;
+        }
+        .mail-desc,
+        .time {
+          font-size: 12px;
+          display: block;
+          margin: 1px 0;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          color: $text-muted;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

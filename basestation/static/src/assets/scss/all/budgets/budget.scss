@@ -1,0 +1,484 @@
+/* Budget Entry Table */
+
+// tool tip button & other informations
+
+.budget-right-align {
+  text-align: right !important;
+  padding-right:10px !important;
+}
+
+.budget-left-align {
+  text-align: left !important;
+  padding-left:10px !important;
+}
+
+.chat-list {
+  overflow:hidden !important;
+}
+.right-part, .left-part {
+  height: 495px !important;
+}
+
+.left-part {
+  width: 150px !important;
+}
+
+.left-part .chat-user {
+  height: calc(100vh - 522px) !important;
+}
+
+ul.chat-user {
+  height: calc(100vh - 522px) !important;
+}
+
+.popup-menu {
+  visibility: hidden;
+  width: 40px !important;
+}
+
+// which element you have to create tooltip
+
+.popup-menu-trigger:hover .popup-menu {
+  visibility: visible;
+}
+
+.btn-mywhite {
+  color: #000;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.budget-settings {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.budget-entry {
+  
+  overflow-x: hidden;
+  width: 100%;
+
+  border-radius:6px !important;
+  -moz-border-radius:6px !important;
+
+  th {
+    padding: 0.1em;
+  }
+
+  td {
+    
+    padding: 0.0em !important;
+
+    input {
+      border: 0px solid white;
+    }
+    input:hover:enabled {
+      border: 1px dotted;
+      background-color: #ffffeb;
+    }
+  }
+}
+
+.buttons-menu {
+  width: 40px !important;
+}
+
+.budget-entry td.currency {
+  width: 70px;
+}
+
+.budget-entry td.currency input {
+  text-align: right !important;
+}
+
+.budget-entry td.reference {
+  width: 50px;
+}
+
+.budget-entry td.created-by {
+  width: 20px !important;
+}
+
+.budget-entry td.stage {
+  width: 30px !important;
+}
+
+.budget-entry td.text {
+  width: 120px;
+}
+
+
+.budget-entry thead tr th {
+  text-align: center;
+  font-size: 11.5px !important;
+  font-weight: normal !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.budget-entry tfoot tr td {
+  text-align: right !important;
+  font-size: 12px !important;
+  padding-right: 10px !important;
+  text-align: right !important;
+  border-top: 4px solid #dee2e6;
+  font-weight: bold;
+}
+
+.budget-entry tbody tr td div.wrapper {
+  width: 50px !important;
+  text-align: center !important;
+  background-color: #e9e8eb;
+}
+
+.budget-entry tbody tr td div.display-wrapper {
+  //width: 80px !important;
+  font-size: 12px !important;
+  padding-right: 10px !important;
+}
+
+.budget-entry tbody tr td div.display-wrapper.budget-currency {
+  //width: 60px !important;
+  padding-right: 10px !important;
+  text-align: right !important;
+}
+
+.budget-entry tbody tr td div.display-wrapper.budget-text {
+  text-align: left !important;
+  padding-left: 10px;
+}
+.position-header {
+  background-color: #c4c4c4;
+}
+
+.budget-header {
+  background-color: #55e6dc;
+}
+
+.forecast-header {
+  //background-color: #c4c4c4;
+  background-color: #79b1fc !important;
+}
+
+.committed-header {
+  //background-color: #f5f6f8;
+  background-color: #fcc174;
+}
+
+.expenditure-header-header {
+  background-color: #e0557a;
+  color: white;
+}
+
+.ffc-header {
+  //background-color: #f5f6f8;
+  background-color: #80ff80;
+}
+
+.greyout > input {
+  color: #bfbbbb !important;
+}
+
+.position {
+  background-color: #ededed;
+}
+.budget {
+  background-color: #c4f5f1;
+}
+.forecast {
+  //background-color: #c4c4c4;
+  background-color: #c9e0ff !important;
+}
+
+.committed {
+  //background-color: #f5f6f8;
+  background-color: #ffeacf;
+}
+.ffc {
+  background-color: #9eff9e;
+}
+
+.ffc-display {
+  background-color: #cfffcf;
+}
+.expenditure-header {
+  background-color: #e37f9a;
+  color: white;
+}
+
+.expenditure {
+  background-color: #f5c4d1;
+}
+
+.budget-entry thead tr th.none{
+  background-color: #ffffff;
+}
+
+.budget-entry thead tr th.remaining-claimed {
+  background-color: #e9e8eb;
+}
+
+/*
+.budget-entry tbody tr th input {
+  width: 200px !important;
+}
+
+.budget-entry tbody tr td input {
+  width: 100px !important;
+}
+*/
+.in-minus {
+  color: red;
+}
+
+/* Progress bar height changed */
+.progress {
+  height: 15px !important;
+}
+
+/* variations and entries header */
+
+
+.entries {
+  border-bottom: 4px solid #579bfc !important;
+  padding: 4px !important;
+}
+
+.black-text .progress-bar{
+  color: black !important;
+}
+
+.budget-approval-indicator {
+  width: 3px !important;
+}
+
+.budget-saved {
+  background-color: #01c875;
+}
+
+.budget-created {
+  background-color: #579bfc;
+}
+
+.budget-dirty {
+  background-color: #fdac3d;
+}
+
+.budget-rejected {
+  background-color: #e2445c;
+}
+
+
+/* variations and entries header */
+
+.variations {
+  padding: 3px !important;
+  border-bottom: 4px solid #fec073 !important;
+}
+
+.contracts {
+  border-bottom: 4px solid #579bfc !important;
+  padding: 4px !important;
+}
+
+.provisional {
+  padding: 3px !important;
+  border-bottom: 4px solid #aa64aa !important;
+}
+
+.budget-panel {
+  display: none;
+  opacity:0;
+}
+
+.budget-panel:hover {
+  background-color: white !important;
+}
+
+.budget-panel.open {
+  height: auto;
+  display: contents;
+  visibility: visible;
+  transition: height 1s;
+  opacity: 1;
+}
+
+.budget-cost {
+  width: 100%;
+  height: 0px;
+  //display: none;
+  visibility: collapse;
+  opacity:0;
+}
+
+.budget-cost:hover {
+  background-color: white !important;
+}
+
+.budget-cost.open {
+  height: auto;
+  //display: table-cell;
+  visibility: visible;
+  transition: height 1s;
+  opacity: 1;
+}
+
+
+.budget-container {
+
+    position: relative;
+    display: block;
+
+    width: 100%;
+
+    .topbox {
+      height: 300px;
+      background: #c8e0ec;
+    }
+    
+    
+  .table {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    
+    .header {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      height: 30px;
+      width: 100%;
+      border-bottom: 1px solid #d3d3d3;
+      
+      .shadow {
+        position: absolute;
+        top: 31px;
+      }
+      
+      .hcol {
+        display: flex;
+        background-color: #e5e8eb;
+        border-color: #DFDFDF;
+        justify-content: space-between;
+        padding: 0 7px;
+        height: 30px;
+        align-items: center;
+        cursor: pointer;
+        color: #1F384D;
+        box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.5);
+        width: 100%;
+      }
+      
+    }
+    
+    .header.fixed {
+      background: #e5e8eb;
+      z-index: 99;
+      position: fixed;
+      top: 0px;
+      .shadow {
+        height: 3px;
+        width: 100%;
+        
+        background: 0 0 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAF0lEQVR4AWPUkNeSBhHCjJoK2twgFisAFagCCp3pJlAAAAAASUVORK5CYII=) repeat-x;
+      }
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+      top: 32px;
+      width: 100%;
+      li {
+        width: 100%;
+        min-height: 25px;
+        border-bottom: 1px solid #DFDFDF;
+        
+        .heading {
+          display: flex;
+     
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-items: stretch;
+          width: 100%;
+          height: 25px;
+          cursor: pointer;
+          transition: background 0.5s;
+          
+          .col {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0 10px;
+            height: 25px;
+            border-right: 1px solid #DFDFDF;
+          }
+        }
+        .content {
+          width: 100%;
+          height: 0px;
+          opacity:0;
+          transition: height 1s;
+        }
+        
+      }
+      
+      li.open {
+        
+        .heading {
+          background: #4d98bc;
+          color: #ffffff;
+          
+          .col {
+            border: none;
+          }
+        }
+        
+        .content {
+          height: 300px;
+          opacity: 1;
+        }
+        
+      }
+    }
+  
+  }
+  }
+  
+  .note-content{
+    position: relative;
+    padding:15px;
+    cursor: pointer;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+  }
+  .note-content:hover{
+    background:rgba(0,0,0,0.05);
+  }
+  .note-title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .line-brd{
+    position: absolute;;
+    width: 5px;
+      height: 100%;
+      left: 0;
+      top: 0;
+  }
+  .note-item{
+    position: relative;
+    display: block;
+  }
+  .deletenote{
+    position: absolute;
+    right:5px;
+    bottom:15px;
+    cursor: pointer;
+  }
+  .deletenote:hover{
+    color:red;
+  }
+  
