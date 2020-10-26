@@ -1,0 +1,202 @@
+.email-app,
+.contact-app {
+	position: relative;
+
+	.list-group {
+		.list-group-item {
+			padding: 0px;
+			background: transparent;
+			border: none;
+			cursor: pointer;
+
+			.list-group-item-action {
+				padding: 12px 15px;
+				display: block;
+				color: $body-color;
+
+				.mdi {
+					font-size: 18px;
+					vertical-align: middle;
+					margin-right: 5px;
+				}
+
+				&:hover,
+				&.active {
+					background: rgba(0, 0, 0, 0.03);
+				}
+			}
+		}
+	}
+
+	.email-table,
+	.contact-table {
+		table-layout: fixed;
+
+		.selected {
+			background: $gray-100;
+		}
+
+		.max-texts,
+		.user-name h6 {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			cursor: pointer;
+		}
+
+		.max-texts {
+			padding: 1rem 5px;
+		}
+
+		.chb {
+			width: 50px;
+		}
+
+		.time {
+			width: 100px;
+			text-align: right;
+		}
+
+		.starred,
+		.clip,
+		.important,
+		.user-image {
+			width: 45px;
+			padding: 1rem 10px;
+		}
+
+		.user-name {
+			width: 130px;
+			padding: 1rem 5px;
+
+			.m-b-0 {
+				font-weight: $font-weight-light;
+			}
+		}
+
+		.unread {
+
+			.m-b-0,
+			.max-texts {
+				font-weight: $font-weight-bold;
+			}
+		}
+	}
+
+	.mail-list,
+	.mail-details {
+		.empty {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+		}
+	}
+}
+
+.contact-table {
+	tr:hover {
+		cursor: pointer;
+	}
+	td {
+		padding: 16px 10px;
+	}
+}
+
+.details-table {
+	table td {
+		width: 200px;
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	.email-table {
+		min-width: 500px;
+	}
+}
+
+.v-middle {
+
+	td,
+	th {
+		vertical-align: middle;
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.contact-app,
+	.email-app {
+		.left-part {
+			left: -200px;
+			z-index: -1;
+			box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+			transition: all 0.2s ease-in-out;
+
+			&.show-panel {
+				z-index: 1;
+				left: 0px;
+			}
+		}
+
+		.right-part {
+			margin-left: 0;
+			width: 100%;
+		}
+
+		.show-left-part {
+			position: fixed;
+			top: 94px;
+			left: 95px;
+			z-index: 1;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			transition: all 0.2s ease-in-out;
+
+			&.left-part-open {
+				left: 295px;
+			}
+		}
+	}
+}
+
+
+@include media-breakpoint-down(sm) {
+	.contact-app,
+	.email-app {
+		.show-left-part {
+			left: 30px;
+
+			&.left-part-open {
+				left: 230px;
+			}
+		}
+
+		.right-part {
+			.right-right-part {
+				margin-left: 100%;
+				z-index: -1;
+				position: absolute;
+				box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+				transition: all 0.2s ease-in-out;
+
+				&.show-right-right-panel {
+					margin-left: 0;
+					z-index: 1;
+					width: 100%;
+					background: $white;
+				}
+
+				.hide-right-right-part {
+					position: absolute;
+					right: 15px;
+					top: 15px;
+				}
+			}
+
+			.right-left-part {
+				width: 100%;
+			}
+		}
+	}
+}

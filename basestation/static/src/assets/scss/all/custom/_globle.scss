@@ -1,0 +1,177 @@
+html body {
+  .jqstooltip,
+  .flotTip {
+    width: auto !important;
+    height: auto !important;
+    background: $gray-900;
+    color: $white;
+    padding: 5px 10px;
+  }
+}
+
+body .jqstooltip {
+  border-color: transparent;
+  border-radius: 60px;
+}
+
+// Tooltip for the chartist chart charts
+.chartist-tooltip {
+  position: absolute;
+  display: inline-block;
+  opacity: 0;
+  border-radius: $border-radius;
+  padding: 10px 20px;
+  background: $info;
+  color: $white;
+  ext-align: center;
+  pointer-events: none;
+  z-index: 1;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+
+.chartist-tooltip:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  border: 5px solid transparent;
+  border-top-color: $info;
+}
+
+.chartist-tooltip.tooltip-show {
+  opacity: 1;
+}
+
+.ct-area,
+.ct-line {
+  pointer-events: none;
+}
+
+.c3-chart-arcs-title {
+  fill: $text-muted;
+}
+
+.c3 line,
+.c3 path {
+  stroke: $gray-200;
+}
+.c3-chart-arc path {
+  stroke: transparent;
+}
+
+.ReactModal__Overlay{
+  z-index: 100;
+  .modal-header > span{
+    width:100%;
+  }
+
+}
+.react-bootstrap-table-page-btns-ul{
+  float:right;
+}
+
+// Form Steps
+
+ol.progtrckr {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+ol.progtrckr li {
+  display: inline-block;
+  text-align: center;
+  line-height: 4.5rem;
+  cursor: pointer;
+}
+
+ol.progtrckr li span {
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 650px) {
+  .progtrckr li span {
+    display: none;
+  }
+}
+.progtrckr em {
+  display: none;
+  font-weight: 700;
+  padding-left: 1rem;
+}
+
+@media (max-width: 650px) {
+  .progtrckr em {
+    display: inline;
+  }
+}
+
+ol.progtrckr li.progtrckr-todo {
+  color: silver;
+  border-bottom: 4px solid silver;
+}
+
+ol.progtrckr li.progtrckr-doing {
+  color: black;
+  border-bottom: 4px solid #CCCCCC;
+}
+
+ol.progtrckr li.progtrckr-done {
+  color: black;
+  border-bottom: 4px solid #5cb85c;
+}
+
+ol.progtrckr li:after {
+  content: "\00a0\00a0";
+}
+
+ol.progtrckr li:before {
+  position: relative;
+  bottom: -65px;
+  float: left;
+  left: 50%;
+}
+
+ol.progtrckr li.progtrckr-todo:before {
+  content: "\039F";
+  color: silver;
+  background-color: white;
+  width: 20px;
+  line-height: 20px;
+}
+
+ol.progtrckr li.progtrckr-todo:hover:before {
+  color: #ff4500;
+}
+
+ol.progtrckr li.progtrckr-doing:before {
+  content: "\2022";
+  color: white;
+  background-color: #CCCCCC;
+  width: 20px;
+  line-height: 20px;
+  border-radius: 50px;
+}
+
+ol.progtrckr li.progtrckr-doing:hover:before {
+  color: #ff4500;
+}
+
+ol.progtrckr li.progtrckr-done:before {
+  content: "\2713";
+  color: white;
+  background-color: #5cb85c;
+  width: 20px;
+  line-height: 20px;
+  border-radius: 50px;
+}
+
+ol.progtrckr li.progtrckr-done:hover:before {
+  color: #333;
+}

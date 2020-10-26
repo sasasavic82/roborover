@@ -1,0 +1,73 @@
+/*
+Template Name: Admin Template
+Author: Niravjoshi / Wrappixel
+File: scss
+*/
+
+/**
+ * Table Of Content
+ *
+ *  1. Color system
+ *  2. Options
+ *  3. Body
+ *  4. Typography
+ *  5. Breadcrumbs
+ *  6. Cards
+ *  7. Dropdowns
+ *  8. Buttons
+ *  9. Typography
+ *  10. Progress bars
+ *  11. Tables
+ *  12. Forms
+ *  14. Component
+ */
+@import 'all/custom/variables.scss';
+
+// Import Bootstrap source files (Required file)
+@import 'all/bootstrap/bootstrap.scss';
+@import 'all/custom/custom.scss';
+
+//This is for the icons (Required file)
+@import 'all/icons/font-awesome/css/fontawesome-all.css';
+@import 'all/icons/simple-line-icons/css/simple-line-icons.css';
+@import 'all/icons/weather-icons/css/weather-icons.css';
+@import 'all/icons/themify-icons/themify-icons.css';
+@import 'all/icons/flag-icon-css/flag-icon.min.css';
+@import 'all/icons/material-design-iconic-font/css/materialdesignicons.min.css';
+@import 'all/icons/crypto-icons/cryptocoins.css';
+
+// Override tabulator
+@import 'all/tabulator/tabulator.scss';
+
+@import 'all/budgets/budget.scss';
+@import 'all/budgets/summary.scss';
+@import 'all/projects/projects.scss';
+@import 'all/global/search.scss';
+
+/* Wizard Fix */
+ol.progtrckr li:before {
+    bottom: -55px !important;
+}
+
+.currency-lg {
+    font-size: 1.5rem !important;
+}
+
+/* larger modal for itemization */
+.custom-modal-style {
+    width: 897px !important;
+}
+
+.backdrop-panel {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+    border-radius: 5px !important;
+}

@@ -1,0 +1,34 @@
+
+.summary {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.1);
+
+  overflow: auto;
+
+  .summary-table {
+
+    width: 100%;
+    table-layout: fixed;
+  
+    tr.summary-sub-heading {
+      width: 100px;
+    }
+
+    th {
+      padding: 0.1em;
+    }
+  
+    td {
+
+      padding: 0.0em;
+    }
+
+  }
+
+}
+
+
+
