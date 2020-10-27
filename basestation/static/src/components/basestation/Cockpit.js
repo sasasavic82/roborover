@@ -40,7 +40,6 @@ const Cockpit = ({ }) => {
 
   const runMission = () => {
     let rawCommands = _.map(commands, (c) => c.rawCommand);
-    console.log(rawCommands);
     sendCommands(rawCommands);
   }
 
@@ -102,7 +101,7 @@ const Cockpit = ({ }) => {
             </Button>
       </CardFooter>
       <CardBody className="border-top">
-        {_.map(executed, (ex) => <TransactionItem response={ex} />)}
+        {_.map(executed, (ex) => <TransactionItem key={ex.commandId} response={ex} />)}
       </CardBody>
     </Card>
   );
