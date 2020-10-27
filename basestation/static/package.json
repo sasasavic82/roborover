@@ -10,8 +10,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:dev": "env-cmd -f ./envs/.env.dev react-scripts start",
-    "build:dev": "env-cmd -f ./envs/.env.dev react-scripts build",
+    "start:dev": "env-cmd -f ./.env.dev react-scripts start",
+    "build:dev": "env-cmd -f ./.env.dev react-scripts build",
     "start:local": "env-cmd -f ./envs/.env.local react-scripts start",
     "start:prod": "react-scripts start",
     "build:prod": "react-scripts build"
@@ -24,6 +24,7 @@
     "@babel/preset-react": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^24.9.0",
+    "dotenv": "^8.2.0",
     "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",

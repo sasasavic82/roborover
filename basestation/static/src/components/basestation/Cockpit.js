@@ -73,7 +73,7 @@ const Cockpit = ({ }) => {
         <h3>RoboRover Live Cam</h3>
       </CardHeader>
       <CardHeader>
-        <Iframe url={process.env.ROBOROVER_STREAM}
+        <Iframe url={process.env.REACT_APP_ROBOROVER_STREAM}
           width="640px"
           height="480px"
           id="myId"

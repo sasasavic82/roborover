@@ -91,8 +91,9 @@ function bootstrap() {
     #echo "var config = { \"control_endpoint\": \"${ROBOROVER_CONTROL_ENDPOINT}\", \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\" }" > ./ui/static/lib/config.js
 
     echo 
-"ROBOROVER_CONTROL_ENDPOINT=${ROBOROVER_CONTROL_ENDPOINT}
-RECOGNITION_ENDPOINT=${ROBOROVER_RECOGNITION_ENDPOINT}" > ./basestation/static/envs/.env.${ENV}
+"REACT_APP_ROBOROVER_CONTROL_ENDPOINT=${ROBOROVER_CONTROL_ENDPOINT}
+REACT_APP_RECOGNITION_ENDPOINT=${ROBOROVER_RECOGNITION_ENDPOINT}
+REACT_APP_ROBOROVER_STREAM=http://dex.local:8181/" > ./basestation/static/envs/.env.${ENV}
 
     # Zip it
     zip -r ./build/roborover.zip ./roveros -x ./roveros/node_modules/**\* ./roveros/*.git*

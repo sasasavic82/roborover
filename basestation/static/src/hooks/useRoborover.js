@@ -1,6 +1,6 @@
 const useRoborover = ({ onRequestCompleted = () => { } }) => {
 
-    const ROBOROVER_CONTROL_ENDPOINT = process.env.ROBOROVER_CONTROL_ENDPOINT;
+    const ROBOROVER_CONTROL_ENDPOINT = process.env.REACT_APP_ROBOROVER_CONTROL_ENDPOINT;
   
     const _prepareRequest = (data, method = "POST") => {
       return {
