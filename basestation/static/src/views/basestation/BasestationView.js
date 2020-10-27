@@ -58,7 +58,7 @@ const BasestationView = () => {
             </CardBody>
           </Card>
         </Col>
-        <Col md="6">
+        <Col md="7">
           <Switch>
             {settingsRoutes.map((route) => (
               <Route key={route.name} path={route.path} component={route.component} />
