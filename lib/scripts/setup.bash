@@ -81,7 +81,7 @@ function bootstrap() {
     log "bootstrap" "bootstrapping RoboRover..." "info" 
 
     touch ./roveros/config/bootstrap.json
-    touch ./basestation/static/envs/.env.${ENV}
+    touch ./basestation/static/.env.${ENV}
 
     echo "{
         \"endpoint\": \"${ENDPOINT}\",
