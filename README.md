@@ -240,6 +240,7 @@ RoboRover comes with a small CLI that you can use to setup the RoboRover, deploy
 ```
 ./roborover deploy [infrastructure|basesestation] <environment> <region> (optional)
 ./roborover roveros [start|stop]
+./roborover streaming [start|stop]
 ./roborover refresh
 ./roborover setup
 ./roborover command [pan|tilt|forward|backward|left|right|stop|drive_cm|drive_deg|speed|image] <value>
