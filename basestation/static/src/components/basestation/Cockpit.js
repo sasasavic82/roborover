@@ -1,49 +1,15 @@
-import React, { useState, useRe } from 'react';
+import React, { useState } from 'react';
 import { Button, Card, CardBody, CardFooter, CardImg, Row, Col, Label, CardHeader } from "reactstrap";
 import Select from "react-select";
 import { v4 } from "uuid";
 import _ from "lodash";
 import Iframe from 'react-iframe'
 
-import img4 from '../../assets/images/big/img4.jpg';
-
 import { components, componentSelection } from "./commands";
 import { updateArrayByKey } from '../../common';
 import TransactionItem from './TransactionItem';
+import useRoborover from '../../hooks/useRoborover';
 
-
-
-const useRoborover = ({ onRequestCompleted = () => { } }) => {
-
-  const ROBOROVER_CONTROL_ENDPOINT = process.env.ROBOROVER_CONTROL_ENDPOINT;
-
-  const _prepareRequest = (data, method = "POST") => {
-    return {
-      method: method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    };
-  }
-
-  const sendCommands = (commands) => {
-
-    console.log(process.env.ROBOROVER_CONTROL_ENDPOINT);
-
-    fetch("https://jkqtjlhx99.execute-api.us-east-1.amazonaws.com/dev/api/control", _prepareRequest({
-      type: "commands",
-      attributes: commands
-    }, "POST"))
-      .then(response => response.json())
-      .then(data => onRequestCompleted({
-        type: "command_executed",
-        response: data
-      }));
-  }
-
-  return {
-    sendCommands
-  }
-}
 
 const Cockpit = ({ }) => {
 
@@ -104,7 +70,10 @@ const Cockpit = ({ }) => {
   return (
     <Card>
       <CardHeader>
-        <Iframe url="http://dex.local:8181/index.html"
+        <h3>RoboRover Live Cam</h3>
+      </CardHeader>
+      <CardHeader>
+        <Iframe url={process.env.ROBOROVER_STREAM}
           width="640px"
           height="480px"
           id="myId"
