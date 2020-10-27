@@ -99,7 +99,7 @@
     "react-floating-button-menu": "^2.0.8",
     "react-hook-form": "^6.0.6",
     "react-hooks-paginator": "^0.4.4",
-    "react-iframe": "1.3.0",
+    "react-iframe": "^1.8.0",
     "react-input-files": "^1.2.0",
     "react-jvectormap": "0.0.3",
     "react-loading": "^2.0.3",

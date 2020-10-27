@@ -53,6 +53,21 @@ while [ "$#" -gt 0 ]; do
             stop)  
                 stop_roveros
                 shift 2;;
+            stream)
+                stream_rover
+                shift 2;;
+            *) 
+                log "validate" "unknown option: $2" "fail" >&2;
+                exit 2;;
+          esac;;
+    streaming) 
+          case "$2" in 
+            start)   
+                start_stream_rover
+                shift 2;;
+            stop)  
+                stop_stream_rover
+                shift 2;;
             *) 
                 log "validate" "unknown option: $2" "fail" >&2;
                 exit 2;;

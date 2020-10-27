@@ -34,7 +34,7 @@ const Pan = ( {commandId, onRemove = () => {}, onCommandChanged = () => {}}) => 
     return (
             <Row className="border-bottom pb-2">
                 <Col xs="1">
-                    <h1><i className="fas fa-arrows-alt-v text-info" /></h1>
+                    <h1><i className="fas fa-arrows-alt-h text-info" /></h1>
                 </Col>
                 <Col xs="2">
                     <h2 className="font-medium float-left mt-0">Pan</h2>
