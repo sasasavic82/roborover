@@ -12,7 +12,8 @@ function create_certificates() {
     log "create_certificates" "creating certificates..." "info" 
 
     if [ ! -f ./roveros/certs/root-CA.crt ]; then
-        log "create_certificates" "downloading AWS IoT Root CA certificate from Symantec..." "info" 
+        log "create_certificates" "downloading AWS IoT Root CA certificate from Symantec..." "info"
+        mkdir ./roveros/certs
         curl https://www.amazontrust.com/repository/AmazonRootCA1.pem > ./roveros/certs/root-CA.crt
     else
         log "create_certificates" "root-CA already exists ... continuing" "info" 
@@ -74,18 +75,24 @@ function setup_endpoints() {
 }
 
 function bootstrap() {
+    
+    ENV=${1:-dev}
 
     log "bootstrap" "bootstrapping RoboRover..." "info" 
 
     touch ./roveros/config/bootstrap.json
-    touch ./ui/static/lib/config.js
+    touch ./basestation/static/envs/.env.${ENV}
 
     echo "{
         \"endpoint\": \"${ENDPOINT}\",
         \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\"
     }" > ./roveros/config/bootstrap.json
 
-    echo "var config = { \"control_endpoint\": \"${ROBOROVER_CONTROL_ENDPOINT}\", \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\" }" > ./ui/static/lib/config.js
+    #echo "var config = { \"control_endpoint\": \"${ROBOROVER_CONTROL_ENDPOINT}\", \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\" }" > ./ui/static/lib/config.js
+
+    echo 
+"ROBOROVER_CONTROL_ENDPOINT=${ROBOROVER_CONTROL_ENDPOINT}
+RECOGNITION_ENDPOINT=${ROBOROVER_RECOGNITION_ENDPOINT}" > ./basestation/static/envs/.env.${ENV}
 
     # Zip it
     zip -r ./build/roborover.zip ./roveros -x ./roveros/node_modules/**\* ./roveros/*.git*
@@ -158,6 +165,30 @@ EOT
     log "start_roveros" "started roverOS" "ok" 
 }
 
+function start_stream_rover() {
+    log "start_stream_rover" "starting streaming..." "info"
+
+    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME" -q << EOT
+pkill -f streaming.py
+cd roveros/live
+python3 streaming.py >>roborover.log 2>&1 &
+exit
+EOT
+
+    log "start_stream_rover" "started roverOS" "ok" 
+}
+
+function stop_stream_rover() {
+    log "start_stream_rover" "stop streaming..." "info"
+
+    sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME" -q << EOT
+pkill -f streaming.py
+exit
+EOT
+
+    log "start_stream_rover" "started roverOS" "ok" 
+}
+
 function setup_refresh() {
     ENV=${1:-dev}
     REGION=${2:-$DEFAULT_AWS_REGION}
@@ -191,7 +222,7 @@ function setup_roborover() {
         exit 255
     fi
 
-    bootstrap
+    bootstrap $ENV
 
     if check_roborover_online; then     
         clean_build
@@ -212,6 +243,8 @@ function deploy_roborover() {
 
     if logged_into_aws; then
         cd infrastructure
+        log "deploy_roborover" "installing infrastructure dependencies" "info"
+        npm install
         log "deploy_roborover" "deploying RoboRover infrastructure" "info"
         serverless deploy --region $REGION --stage $ENV -v 
         log "deploy_roborover" "deployed RoboRover infrastructure" "ok"

@@ -116,6 +116,12 @@ function check_dependencies() {
         exit 255
     fi
 
+    # brew install hudochenkov/sshpass/sshpass
+    if ! [ -x "$(command -v sshpass)" ]; then
+        log "check_dependencies" "missing sshpass. please install sshpass via: brew install hudochenkov/sshpass/sshpass" "fail"
+        exit 255
+    fi
+
     if ! [ -x "$(command -v serverless)" ]; then
         log "check_dependencies" "serverless missing. installing..." "info"
         npm install -g serverless

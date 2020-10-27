@@ -40,7 +40,7 @@ const Drive = ( {commandId, onRemove = () => {}, onCommandChanged = () => {}}) =
                     <h2 className="font-medium float-left mt-0">Drive</h2>
                 </Col>
                 <Col xs="6">
-                    <Input className="mt-2" value={command.attributes.distance} type="range" min={1} max={10000} onChange={onChange} />
+                    <Input className="mt-2" value={command.attributes.distance} type="range" min={1} max={1000} onChange={onChange} />
                 </Col>
                 <Col xs="2">
                     <h3><Badge color="dark">{command.attributes.distance} cm</Badge></h3>
