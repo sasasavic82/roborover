@@ -7,7 +7,7 @@ custom:
   baseName: roborover.com
   s3Sync:
     - bucketName: ${self:custom.baseName}
-      localDir: static
+      localDir: static/build
 
 provider:
   name: aws
