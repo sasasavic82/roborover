@@ -49,6 +49,20 @@ const Cockpit = ({ }) => {
     );
   }
 
+  const calibrate = () => {
+    sendCommands([{
+      type: "pan",
+      attributes: {
+          rotation: 74
+      }
+  },{
+    type: "tilt",
+    attributes: {
+        rotation: 80
+    }
+}])
+  }
+
   const onRemove = (commandId) => {
     let commandsCopy = Object.assign([], commands);
     _.remove(commandsCopy, (cmd) => cmd.commandId == commandId);
@@ -97,7 +111,9 @@ const Cockpit = ({ }) => {
       </CardBody>
       <CardFooter className="border-top p-3">
         <Button className="float-right ml-2" onClick={runMission} disabled={commands.length == 0} color="success">Run Mission</Button>
-        <Button className="float-right" onClick={reset} disabled={commands.length == 0} color="warning">Reset
+        <Button className="float-right ml-2" onClick={calibrate} color="info">Calibrate
+            </Button>
+        <Button className="float-left" onClick={reset} disabled={commands.length == 0} color="warning">Reset
             </Button>
       </CardFooter>
       <CardBody className="border-top">

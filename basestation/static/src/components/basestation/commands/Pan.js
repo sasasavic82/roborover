@@ -7,7 +7,7 @@ const Pan = ( {commandId, onRemove = () => {}, onCommandChanged = () => {}}) => 
     const [command, setCommand] = useState({
         type: "pan",
         attributes: {
-            rotation: 90
+            rotation: 74
         }
     });
 

@@ -7,7 +7,7 @@ const Tilt = ( {commandId, onRemove = () => {}, onCommandChanged = () => {}}) =>
     const [command, setCommand] = useState({
         type: "tilt",
         attributes: {
-            rotation: 90
+            rotation: 80
         }
     });
 
