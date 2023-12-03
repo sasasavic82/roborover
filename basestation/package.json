@@ -17,8 +17,7 @@
     "url": "https://github.com/sasasavic82/belvedere/issues"
   },
   "homepage": "https://github.com/sasasavic82/belvedere#readme",
-  "dependencies": {},
   "devDependencies": {
-    "serverless-s3-sync": "^1.10.5"
+    "serverless-s3-sync": "^3.2.0"
   }
 }

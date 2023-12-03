@@ -1,29 +1,29 @@
 telemetry-incoming:
   handler: services/telemetry/incoming.handler
-  iamRoleStatementsName: roborover-telemetry-incoming-${self:provider.stage}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:BatchWriteItem
-      Resource:
-        - "Fn::GetAtt": [TelemetryTable, Arn]
+  # iamRoleStatementsName: roborover-telemetry-incoming-${self:provider.stage}
+  # iamRoleStatements:
+  #   - Effect: Allow
+  #     Action:
+  #       - dynamodb:PutItem
+  #       - dynamodb:UpdateItem
+  #       - dynamodb:BatchWriteItem
+  #     Resource:
+  #       - "Fn::GetAtt": [TelemetryTable, Arn]
   events:
     - iot:
         sql: "SELECT * FROM 'roborover/telemetry/#'"
 
 telemetry-get:
   handler: services/telemetry/get.handler
-  iamRoleStatementsName: roborover-telemetry-get-${self:provider.stage}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-      Resource:
-        - "Fn::GetAtt": [TelemetryTable, Arn]
+  # iamRoleStatementsName: roborover-telemetry-get-${self:provider.stage}
+  # iamRoleStatements:
+  #   - Effect: Allow
+  #     Action:
+  #       - dynamodb:Query
+  #       - dynamodb:Scan
+  #       - dynamodb:GetItem
+  #     Resource:
+  #       - "Fn::GetAtt": [TelemetryTable, Arn]
   events:
     - http:
         path: api/telemetry

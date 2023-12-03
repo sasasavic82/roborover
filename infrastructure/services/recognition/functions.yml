@@ -1,17 +1,17 @@
 image-upload-recognition:
   handler: services/recognition/upload.handler
-  iamRoleStatementsName: roborover-image-upload-recognition-${self:provider.stage}
-  iamRoleStatements:
-    - Effect: 'Allow'
-      Action:
-        - rekognition:*
-      Resource: '*'
-    - Effect: 'Allow'
-      Action:
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-      Resource:
-        - 'Fn::GetAtt': [ImageTable, Arn]
+  # iamRoleStatementsName: roborover-image-upload-recognition-${self:provider.stage}
+  # iamRoleStatements:
+  #   - Effect: 'Allow'
+  #     Action:
+  #       - rekognition:*
+  #     Resource: '*'
+  #   - Effect: 'Allow'
+  #     Action:
+  #       - dynamodb:PutItem
+  #       - dynamodb:UpdateItem
+  #     Resource:
+  #       - 'Fn::GetAtt': [ImageTable, Arn]
   events:
     - http:
         path: api/recognize
@@ -20,15 +20,15 @@ image-upload-recognition:
 
 image-get:
   handler: services/recognition/get.handler
-  iamRoleStatementsName: roborover-image-get-${self:provider.stage}
-  iamRoleStatements:
-    - Effect: 'Allow'
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-      Resource:
-        - 'Fn::GetAtt': [ImageTable, Arn]
+  # iamRoleStatementsName: roborover-image-get-${self:provider.stage}
+  # iamRoleStatements:
+  #   - Effect: 'Allow'
+  #     Action:
+  #       - dynamodb:Query
+  #       - dynamodb:Scan
+  #       - dynamodb:GetItem
+  #     Resource:
+  #       - 'Fn::GetAtt': [ImageTable, Arn]
   events:
     - http:
         path: api/recognize

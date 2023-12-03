@@ -11,17 +11,27 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs14.x
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'ap-southeast-2'}
+
+
 
 resources:
   Resources:
     BasestationSite:
       Type: AWS::S3::Bucket
       Properties:
-        AccessControl: PublicRead
+        # AccessControl: PublicRead
         BucketName: ${self:custom.baseName}
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: ObjectWriter
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html

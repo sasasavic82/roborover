@@ -55,7 +55,7 @@ function setup_endpoints() {
         exit 255
     fi
 
-    API_MODEL=$(aws apigateway get-rest-apis --query 'items[?contains(name, `roborover-infrastructure`) == `true`].id' --output text)
+    API_MODEL=$(aws apigateway get-rest-apis --query 'items[?contains(name, `rr-infra`) == `true`].id' --output text)
 
     # Check to see if anything was returned
     if [ $? -ne 0 ]; then
@@ -90,10 +90,9 @@ function bootstrap() {
 
     #echo "var config = { \"control_endpoint\": \"${ROBOROVER_CONTROL_ENDPOINT}\", \"recognition_endpoint\": \"${ROBOROVER_RECOGNITION_ENDPOINT}\" }" > ./ui/static/lib/config.js
 
-    echo 
-"REACT_APP_ROBOROVER_CONTROL_ENDPOINT=${ROBOROVER_CONTROL_ENDPOINT}
-REACT_APP_RECOGNITION_ENDPOINT=${ROBOROVER_RECOGNITION_ENDPOINT}
-REACT_APP_ROBOROVER_STREAM=http://dex.local:8181/" > ./basestation/static/envs/.env.${ENV}
+    echo "REACT_APP_ROBOROVER_CONTROL_ENDPOINT=$ROBOROVER_CONTROL_ENDPOINT
+REACT_APP_RECOGNITION_ENDPOINT=$ROBOROVER_RECOGNITION_ENDPOINT
+REACT_APP_ROBOROVER_STREAM=http://dex.local:8181/" > ./basestation/static/.env.${ENV}
 
     # Zip it
     zip -r ./build/roborover.zip ./roveros -x ./roveros/node_modules/**\* ./roveros/*.git*
@@ -105,6 +104,8 @@ REACT_APP_ROBOROVER_STREAM=http://dex.local:8181/" > ./basestation/static/envs/.
 
 function clean_build() {
     log "clean_build" "cleaning previous versions of RoboRover roverOS" "info" 
+
+    #sshlog "exec" "executing $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt $ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME"
 
     sshpass -p $DEFAULT_RASPBERRYPI_PASSWORD ssh -tt "$ROBOROVER_USERNAME@$ROBOROVER_HOSTNAME" -q << EOT
 rm -rf rovertemp
@@ -247,7 +248,7 @@ function deploy_roborover() {
         log "deploy_roborover" "installing infrastructure dependencies" "info"
         npm install
         log "deploy_roborover" "deploying RoboRover infrastructure" "info"
-        serverless deploy --region $REGION --stage $ENV -v 
+        sls deploy --region $REGION --stage $ENV -v 
         log "deploy_roborover" "deployed RoboRover infrastructure" "ok"
     else
         cd $CURRENT_DIR
@@ -266,7 +267,7 @@ function deploy_basestation() {
     if logged_into_aws; then
         cd ui
         log "deploy_basestation" "deploying RoboRover basestation" "info"
-        serverless deploy --region $REGION --stage $ENV -v
+        sls deploy --region $REGION --stage $ENV -v
         log "deploy_basestation" "deployed RoboRover basestation" "ok"
     else
         cd $CURRENT_DIR

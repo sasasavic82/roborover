@@ -13,4 +13,4 @@ Resources:
               - iot:Subscribe
               - iot:Publish
             Resource: "*"       
-      PolicyName: default-roborover-policy-${self:provider.stage}
+      PolicyName: default-rr-policy-${self:provider.stage}

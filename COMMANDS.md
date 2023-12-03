@@ -1,0 +1,5 @@
+## CONTROL
+* { PAN, TILT } { 10 - 150 }
+* { FORWARD, BACKWARD, STOP, LEFT, RIGHT } <m seconds>
+* SPEED
+* IMAGE

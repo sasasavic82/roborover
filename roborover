@@ -83,6 +83,9 @@ while [ "$#" -gt 0 ]; do
 
       case "$2" in
 
+        stack)      stack_commands ${@:3}
+                    exit 0;;
+
         pan)        validate
                     run_api "pan" $3
                     shift 3;;

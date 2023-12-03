@@ -1,15 +1,14 @@
-service: roborover-infrastructure
-
-frameworkVersion: ">=1.1.0 <2.0.0"
+service: rr-infra
+#frameworkVersion: ">=1.1.0 <2.0.0"
+# frameworkVersion: '^3.18.2'
 
 plugins:
-  - serverless-pseudo-parameters
   - serverless-iam-roles-per-function
   - serverless-offline
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
   environment:
@@ -29,6 +28,45 @@ provider:
       Resource:
         - "Fn::GetAtt": [ TelemetryTable, Arn ]
         - "Fn::GetAtt": [ ImageTable, Arn ]
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:BatchWriteItem
+      Resource:
+        - "Fn::GetAtt": [TelemetryTable, Arn]
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+      Resource:
+        - "Fn::GetAtt": [TelemetryTable, Arn]
+    - Effect: 'Allow'
+      Action:
+        - rekognition:*
+      Resource: '*'
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource:
+        - 'Fn::GetAtt': [ImageTable, Arn]
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+      Resource:
+        - 'Fn::GetAtt': [ImageTable, Arn]
+    - Effect: 'Allow'     
+      Action:
+        - iot:DescribeEndpoint
+      Resource: '*'
+    - Effect: 'Allow'      
+      Action:
+        - iot:Publish
+      Resource: '*'
 
 functions:
   - ${file(./services/telemetry/functions.yml)}

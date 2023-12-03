@@ -1,15 +1,15 @@
 control-post:
   handler: services/control/post.handler
-  iamRoleStatementsName: roborover-control-post-${self:provider.stage}
-  iamRoleStatements:
-    - Effect: 'Allow'     
-      Action:
-        - iot:DescribeEndpoint
-      Resource: '*'
-    - Effect: 'Allow'      
-      Action:
-        - iot:Publish
-      Resource: 'arn:aws:iot:${self:provider.region}:#{AWS::AccountId}:topic/roborover/control/*'
+  # iamRoleStatementsName: roborover-control-post-${self:provider.stage}
+  # iamRoleStatements:
+  #   - Effect: 'Allow'     
+  #     Action:
+  #       - iot:DescribeEndpoint
+  #     Resource: '*'
+  #   - Effect: 'Allow'      
+  #     Action:
+  #       - iot:Publish
+  #     Resource: 'arn:aws:iot:${self:provider.region}:#{AWS::AccountId}:topic/roborover/control/*'
   events:
     - http:
         path: api/control
